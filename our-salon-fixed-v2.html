@@ -1,0 +1,2326 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<title>OUR SALON — Beauty, Hair, Makeup &amp; Bridal Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{
+  --bg:#fdf2f8;--card:rgba(255,255,255,.94);--card2:rgba(253,242,248,.96);--menu-bg:#ffffff;--glass-b:rgba(255,255,255,.78);--glass-in:inset 0 1px 0 rgba(255,255,255,.85);
+  --ink:#1e1b4b;--mut:#6b7280;--line:rgba(219,39,119,.18);
+  --pri:#db2777;--pri2:#ec4899;--pbg:rgba(219,39,119,.12);--onpri:#ffffff;
+  --P:#059669;--Pb:rgba(16,185,129,.15);--A:#e11d48;--Ab:rgba(244,63,94,.15);--L:#d97706;--Lb:rgba(245,158,11,.16);--V:#7c3aed;--Vb:rgba(124,58,237,.16);
+  --sh:0 8px 24px -6px rgba(190,24,93,.1),var(--glass-in);
+  --sh-lg:0 18px 40px -12px rgba(190,24,93,.18),var(--glass-in)
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f0a12;--card:rgba(30,15,25,.92);--card2:rgba(40,20,35,.88);--menu-bg:#1a0f18;--glass-b:rgba(255,255,255,.12);--glass-in:inset 0 1px 0 rgba(255,255,255,.1);
+  --ink:#fce7f3;--mut:#a78bfa;--line:rgba(244,114,182,.2);
+  --pbg:rgba(236,72,153,.2);--onpri:#ffffff;
+  --P:#34d399;--Pb:rgba(16,185,129,.2);--A:#fb7185;--Ab:rgba(244,63,94,.2);--L:#fbbf24;--Lb:rgba(245,158,11,.2);--V:#a78bfa;--Vb:rgba(167,139,250,.2);
+  --sh:0 10px 26px rgba(0,0,0,.45),var(--glass-in);--sh-lg:0 22px 48px rgba(0,0,0,.65),var(--glass-in)
+}}
+:root[data-theme="dark"]{
+  --bg:#0f0a12;--card:rgba(30,15,25,.92);--card2:rgba(40,20,35,.88);--menu-bg:#1a0f18;--glass-b:rgba(255,255,255,.12);--glass-in:inset 0 1px 0 rgba(255,255,255,.1);
+  --ink:#fce7f3;--mut:#a78bfa;--line:rgba(244,114,182,.2);
+  --pbg:rgba(236,72,153,.2);--onpri:#ffffff;
+  --P:#34d399;--Pb:rgba(16,185,129,.2);--A:#fb7185;--Ab:rgba(244,63,94,.2);--L:#fbbf24;--Lb:rgba(245,158,11,.2);--V:#a78bfa;--Vb:rgba(167,139,250,.2);
+  --sh:0 10px 26px rgba(0,0,0,.45),var(--glass-in);--sh-lg:0 22px 48px rgba(0,0,0,.65),var(--glass-in)
+}
+
+@keyframes fadeUp{from{opacity:0;transform:translate3d(0,8px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+@keyframes popIn3d{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
+@keyframes slideLeft{from{opacity:0;transform:translate3d(20px,0,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+@keyframes wave{0%,100%{transform:translateX(-8%) rotate(-2deg)}50%{transform:translateX(8%) rotate(2deg)}}
+@keyframes wave2{0%,100%{transform:translateX(8%) rotate(2deg)}50%{transform:translateX(-8%) rotate(-2deg)}}
+@keyframes pulseDot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.25)}}
+
+*,*::before,*::after{box-sizing:border-box}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);max-width:100%;overflow-x:clip;scroll-behavior:smooth}
+body{margin:0;width:100%;max-width:100%;background:var(--bg);color:var(--ink);font:14px/1.6 Inter,system-ui,sans-serif;font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased;overflow-x:clip}
+
+#bg-fx{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+#bg-fx .dot-field{position:absolute;inset:-20px;background-image:radial-gradient(circle,color-mix(in srgb,var(--pri) 22%,transparent) 1.2px,transparent 1.2px);background-size:26px 26px;opacity:.4}
+#bg-fx .mesh1{position:absolute;width:120vw;height:40vh;top:5%;left:-15vw;border-radius:50%;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--pri) 18%,transparent),transparent);animation:wave 12s ease-in-out infinite}
+#bg-fx .mesh2{position:absolute;width:120vw;height:38vh;bottom:8%;right:-15vw;border-radius:50%;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--pri2) 15%,transparent),transparent);animation:wave2 14s ease-in-out infinite}
+
+#app,#m,#dr,#toast{position:relative;z-index:1}
+h1,h2,h3{margin:0;font-weight:700;letter-spacing:-.02em;word-break:break-word}h1{font-size:22px}h2{font-size:16px}
+button,input,select,textarea{font:inherit;color:inherit;max-width:100%}
+input,select,textarea{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:9px 12px;min-width:0;transition:border-color .14s,box-shadow .14s,background .14s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--pri);box-shadow:0 0 0 3px var(--pbg);background:var(--menu-bg)}
+textarea{width:100%;min-height:80px}
+
+.b{border:1px solid var(--glass-b);background:var(--card);box-shadow:var(--glass-in);border-radius:10px;padding:9px 14px;cursor:pointer;font-weight:600;min-height:40px;display:inline-flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:transform .12s,background .14s,border-color .14s}
+.b:hover:not(:disabled){background:var(--pbg);border-color:var(--pri);transform:translateY(-1px)}
+.b:active:not(:disabled){transform:scale(.98)}
+.b.pri{background:linear-gradient(135deg,var(--pri),var(--pri2));color:var(--onpri);border-color:rgba(255,255,255,.25);box-shadow:0 6px 16px -4px var(--pri)}
+.b.wa{background:linear-gradient(135deg,#059669,#10b981);color:#ffffff;border-color:rgba(255,255,255,.25);box-shadow:0 6px 16px -4px rgba(16,185,129,.45)}
+.b.del{color:var(--A);border-color:rgba(225,29,72,.3)}.b.del:hover:not(:disabled){background:var(--Ab);border-color:var(--A)}
+.b.sm{padding:6px 11px;min-height:34px;font-size:12.5px;border-radius:8px}
+.b:disabled{opacity:.45;cursor:not-allowed}
+:focus-visible{outline:2px solid var(--pri);outline-offset:2px}
+
+.card{background:var(--card);border:1px solid var(--glass-b);border-radius:18px;padding:16px;box-shadow:var(--sh);transition:border-color .16s,box-shadow .16s;min-width:0;max-width:100%;overflow:hidden}
+.card:hover{border-color:color-mix(in srgb,var(--pri) 40%,var(--glass-b));box-shadow:var(--sh-lg)}
+.mut{color:var(--mut)}.sm{font-size:13px}
+
+/* Trial Banner & Expired Box */
+.trial-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;border-radius:14px;padding:10px 14px;margin-bottom:12px;border:1px solid var(--line);background:var(--card2)}
+.trial-bar.warn{border-color:rgba(217,119,6,.45);background:var(--Lb)}
+.trial-bar.exp{border-color:rgba(225,29,72,.45);background:var(--Ab)}
+.expired-box{border:1px solid rgba(225,29,72,.45);background:color-mix(in srgb,var(--Ab) 72%,var(--card2));border-radius:18px;padding:18px;display:grid;gap:12px;text-align:center}
+.buy-card{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:12px;display:grid;gap:8px;text-align:start}
+
+/* Slot Chart & Overlap Alerts */
+.slot-chart{border:1px solid var(--line);background:var(--card2);border-radius:14px;padding:12px;display:grid;gap:8px}
+.slot-head{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.slot-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:8px}
+.slot-btn{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:8px;text-align:start;cursor:pointer;display:grid;gap:2px;transition:transform .12s,border-color .12s,background .12s}
+.slot-btn.free:hover{border-color:var(--P);background:var(--Pb)}
+.slot-btn.free .st-lbl{color:var(--P);font-weight:700;font-size:11px}
+.slot-btn.busy{border-color:rgba(225,29,72,.45);background:var(--Ab)}
+.slot-btn.busy .st-lbl{color:var(--A);font-weight:700;font-size:11px}
+.slot-btn.overlap{border-color:var(--A);border-width:2px;background:color-mix(in srgb,var(--Ab) 85%,var(--Lb))}
+.slot-btn.overlap .st-lbl{color:var(--A);font-weight:800;font-size:11px}
+.slot-btn.picked{border-color:var(--pri);box-shadow:0 0 0 2px var(--pbg)}
+.conflict-warn{border-radius:12px;padding:10px 12px;background:var(--Ab);color:var(--A);border:1px solid rgba(225,29,72,.4);font-size:12.5px;font-weight:600;display:grid;gap:6px}
+.overlap-item{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;background:var(--card);border:1px solid rgba(225,29,72,.3);border-radius:9px;padding:7px 10px;color:var(--ink)}
+
+/* Public Salon Web Storefront */
+.pub-wrap{max-width:1080px;margin:0 auto;padding:14px 16px 48px;display:grid;gap:18px;animation:fadeUp .18s ease-out}
+.pub-nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:15;background:var(--menu-bg);border:1px solid var(--glass-b);border-radius:16px;padding:10px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;box-shadow:var(--sh)}
+.pub-links{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.pub-links a{color:var(--mut);text-decoration:none;font-weight:600;font-size:13px;padding:6px 10px;border-radius:9px;transition:background .14s,color .14s}
+.pub-links a:hover{background:var(--pbg);color:var(--pri)}
+.hero{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:16px;align-items:stretch}
+.hero-main{padding:24px;display:grid;gap:12px;align-content:start;background:radial-gradient(circle at top right,var(--pbg),transparent 62%),var(--card)}
+.hero-title{font-size:28px;line-height:1.18;font-weight:800;letter-spacing:-.03em}
+.article-box{padding:22px;display:grid;gap:10px}
+.article-box p{margin:0;color:var(--ink);opacity:.92}
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.svc-card{display:grid;gap:8px;align-content:space-between}
+.svc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.price-tag{font-weight:800;color:var(--pri);font-size:15px;white-space:nowrap}
+.staff-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+
+.logo{font-weight:800;font-size:17px;display:inline-flex;align-items:center;gap:8px;min-width:0}
+.logo span.brand-txt{background:linear-gradient(135deg,var(--pri),var(--pri2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.org-img{width:30px;height:30px;border-radius:9px;object-fit:cover;flex-shrink:0;border:1px solid var(--glass-b)}
+.sync{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--pbg);color:var(--pri);white-space:nowrap;flex-shrink:0;border:1px solid var(--glass-b)}
+.sync i{width:7px;height:7px;border-radius:50%;background:var(--P);display:inline-block;animation:pulseDot 2.4s ease-in-out infinite}
+.sync.err i{background:var(--A);animation:none}
+
+.shell{display:grid;grid-template-columns:224px minmax(0,1fr);min-height:100dvh;width:100%;max-width:100%}
+.shell > div{min-width:0;width:100%;max-width:100%}
+.side{background:var(--card);border-right:1px solid var(--glass-b);padding:16px 12px;position:sticky;top:0;height:100dvh;display:flex;flex-direction:column;gap:3px;overflow-y:auto}
+.nv{display:flex;align-items:center;gap:8px;width:100%;text-align:start;border:0;background:none;padding:10px 12px;border-radius:11px;cursor:pointer;font-weight:600;color:var(--mut);transition:background .14s,color .14s;white-space:nowrap}
+.nv.on{background:var(--pbg);color:var(--pri)}.nv:hover{color:var(--ink);background:var(--card2)}
+
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:12;background:var(--menu-bg);border-bottom:1px solid var(--glass-b);display:flex;gap:8px;align-items:center;padding:10px 18px;width:100%;max-width:100%;min-width:0}
+.top .sp{flex:1;min-width:0}
+.top input.top-search{width:185px}
+.chip{display:flex;align-items:center;gap:7px;border:1px solid var(--glass-b);background:var(--card2);border-radius:999px;padding:4px 10px 4px 4px;cursor:pointer;flex-shrink:0;transition:border-color .14s,background .14s}
+.chip:hover{border-color:var(--pri);background:var(--pbg)}
+.av{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--pri),var(--pri2));color:#fff;display:grid;place-items:center;font-weight:700;font-size:12px;overflow:hidden;flex-shrink:0}
+.av img{width:100%;height:100%;object-fit:cover;display:block}
+.av.lg-av{width:64px;height:64px;font-size:22px;border:2px solid var(--glass-b)}
+.prof-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:10px;border:1px solid var(--glass-b);border-radius:14px;background:var(--card2)}
+.role{font-size:11px;font-weight:700;background:var(--pbg);color:var(--pri);border-radius:6px;padding:2px 7px;text-transform:capitalize}
+
+main{padding:18px;max-width:1140px;width:100%;min-width:0;animation:fadeUp .16s ease-out}
+.ph{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px;min-width:0}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center;width:100%;min-width:0}
+.kp{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px;margin-bottom:16px;width:100%;min-width:0}
+.kp .card b{display:block;font-size:22px;font-weight:800;margin-top:4px;word-break:break-word}
+
+.bd{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap}
+.sP{background:var(--Pb);color:var(--P)}.sA{background:var(--Ab);color:var(--A)}.sL{background:var(--Lb);color:var(--L)}.sV{background:var(--Vb);color:var(--V)}.sN{background:var(--line);color:var(--mut)}
+.ok{color:var(--P)}.bad{color:var(--A)}
+
+.row{display:flex;align-items:center;gap:10px;justify-content:space-between;background:var(--card);border:1px solid var(--glass-b);border-radius:14px;padding:11px 14px;margin-bottom:8px;flex-wrap:wrap;box-shadow:var(--sh);width:100%;min-width:0}
+.row:hover{border-color:var(--pri)}
+.row .nm{flex:1;min-width:140px;cursor:pointer;word-break:break-word}
+.seg{display:flex;gap:5px;flex-shrink:0}
+.seg button{width:38px;height:36px;border:1px solid var(--glass-b);background:var(--card2);border-radius:9px;cursor:pointer;font-weight:700;color:var(--mut);font-size:12px;transition:background .12s,border-color .12s,color .12s}
+.seg button:hover:not(:disabled){border-color:var(--pri);color:var(--ink)}
+.seg .oP{background:var(--P);color:#fff;border-color:var(--P)}
+.seg .oA{background:var(--A);color:#fff;border-color:var(--A)}
+.seg .oL{background:var(--L);color:#fff;border-color:var(--L)}
+.seg .oV{background:var(--V);color:#fff;border-color:var(--V)}
+
+.tw{width:100%;max-width:100%;min-width:0;overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse}
+th,td{text-align:start;padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{color:var(--mut);font-weight:600;font-size:11.5px;text-transform:uppercase;background:var(--card2)}
+tr.cl{cursor:pointer;transition:background .12s}tr.cl:hover{background:var(--pbg)}
+
+.al{border-radius:12px;padding:11px 14px;margin-bottom:12px;background:var(--Ab);color:var(--A);font-weight:600;border:1px solid rgba(225,29,72,.25);word-break:break-word}
+.kill-box{border:1px solid rgba(225,29,72,.38);background:color-mix(in srgb,var(--Ab) 65%,var(--card2));border-radius:16px;padding:14px;display:grid;gap:10px}
+.emp{text-align:center;padding:24px 14px;color:var(--mut);border:1px dashed var(--line);border-radius:14px;background:var(--card2)}
+
+.ov{position:fixed;inset:0;background:rgba(15,5,20,.55);display:grid;place-items:center;padding:12px;z-index:30}
+.md{background:var(--menu-bg);border:1px solid var(--glass-b);border-radius:20px;padding:20px;width:100%;max-width:480px;max-height:88dvh;overflow:auto;display:grid;gap:12px;box-shadow:var(--sh-lg);animation:popIn3d .16s ease-out}
+.md.w{max-width:640px}.mf{display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap;margin-top:4px}
+
+.dr{position:fixed;top:0;right:0;bottom:0;width:min(410px,100vw);background:var(--menu-bg);border-left:1px solid var(--glass-b);z-index:20;padding:16px;overflow:auto;display:grid;gap:12px;align-content:start;box-shadow:var(--sh-lg);animation:slideLeft .18s ease-out}
+
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:999px;font-weight:600;z-index:40;opacity:0;transition:opacity .16s;pointer-events:none;max-width:calc(100vw - 24px);text-align:center;font-size:13px;box-shadow:var(--sh-lg)}
+.fl{display:grid;gap:10px}.fl label{display:grid;gap:4px;font-size:13px;font-weight:500;color:var(--mut)}
+.chk{display:flex;align-items:flex-start;gap:8px;cursor:pointer;font-weight:600;color:var(--ink);line-height:1.4}
+.chk input{width:17px;height:17px;accent-color:var(--pri);flex-shrink:0;margin-top:2px}
+.swatches{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+.sw{width:28px;height:28px;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:transform .12s}
+.sw:hover{transform:scale(1.1)}.sw.on{border-color:var(--ink);transform:scale(1.12)}
+
+/* Mobile three-dot menu */
+.mob-dots-wrap{display:inline-flex;align-items:center}
+.mob-dots-btn{width:36px;min-height:36px;padding:0;border-radius:10px;font-size:19px;line-height:1}
+.mob-dots-backdrop{position:fixed;inset:0;z-index:28;background:rgba(15,5,20,.28)}
+.mob-dots-menu{position:fixed;top:60px;right:12px;left:auto;width:min(235px,calc(100vw - 24px));max-height:calc(100dvh - 80px);overflow-y:auto;background:var(--menu-bg);border:1px solid var(--glass-b);border-radius:16px;box-shadow:var(--sh-lg);padding:8px;display:grid;gap:3px;z-index:30;animation:popIn3d .14s ease-out}
+.mob-dots-menu button{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;text-align:start;border:0;background:none;padding:10px 12px;border-radius:10px;cursor:pointer;font-weight:600;font-size:13.5px;color:var(--ink)}
+.mob-dots-menu button:hover,.mob-dots-menu button.on{background:var(--pbg);color:var(--pri)}
+.mob-dots-menu hr{border:0;border-top:1px solid var(--line);margin:4px 6px}
+
+@media (max-width:860px){
+  h1{font-size:18px}
+  .hero{grid-template-columns:minmax(0,1fr)}
+  .hero-title{font-size:22px}
+  .pub-links{display:none}
+  .shell{grid-template-columns:minmax(0,1fr);overflow-x:clip}
+  .side{display:none}
+  .top{padding:8px 10px;gap:6px;flex-wrap:wrap}
+  .top .sync{font-size:10.5px;padding:3px 7px}
+  .top input.top-search{order:10;flex:1 1 100%;width:100%;padding:8px 10px;font-size:13.5px}
+  .top .chip .role{display:none}
+  .top .chip{padding:2px;border:0;background:none}
+  .top .b.sm{padding:5px 8px;min-height:32px;font-size:11.5px}
+  main{padding:12px;padding-bottom:32px;max-width:100%;overflow-x:clip}
+  .card{padding:12px;border-radius:16px;max-width:100%}
+  .kill-box{padding:10px}
+  .kp{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .kp .card{padding:12px}
+  .kp .card b{font-size:20px}
+  .bar{gap:6px}
+  .bar > input,.bar > select{flex:1 1 100%;width:100%}
+  .bar > button,.bar > a.b{flex:1 1 auto;min-width:0;padding:8px 10px;font-size:12px;white-space:normal}
+  .row{padding:10px 12px;gap:8px}
+  .row .nm{flex:1 1 100%;min-width:0}
+  .seg{width:100%;justify-content:space-between}
+  .seg button{flex:1;height:38px;width:auto}
+  th,td{padding:8px;font-size:12px}
+}
+@media print{#bg-fx,.side,.top,.bar,.mob-dots-wrap,.noprint{display:none!important}.shell{display:block}body{background:#fff}}
+</style>
+</head>
+<body>
+<div id="bg-fx" aria-hidden="true"><div class="dot-field"></div><div class="mesh1"></div><div class="mesh2"></div></div>
+<div id="app"></div>
+<div id="m"></div>
+<div id="dr"></div>
+<div id="toast"></div>
+
+<script>
+const APP_VERSION = '1.20';
+const THEME_KEY = 'our_salon_theme';
+const SESSION_KEY = 'salon_sess_v1';
+const STORE_KEY = 'salon_db_v1';
+const OWNER_STORE_KEY = 'salon_owner_v1';
+const OWNER_CLOUD_ID = 'salon_owner_meta';
+const MAIN_CLOUD_ID = 'salon_main';
+const IP_CACHE_KEY = 'salon_ip_cache_v1';
+const DEVICE_ID_KEY = 'salon_device_id_v1';
+
+const SUPABASE_URL = 'https://cukxgzrnbiinkzmolipj.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_hfUzvb1uykYMoRVKPY4laQ_1xqGnv-4';
+
+const DEFAULT_OWNER_EMAIL = 'abdullah.owner@oursalon.pk';
+const DEFAULT_OWNER_PW = 'abdullah';
+const DEFAULT_OWNER_NAME = 'Abdullah (Owner)';
+const DEFAULT_ORG = 'OUR SALON';
+const DEFAULT_TAGLINE = 'Beauty • Hair • Makeup • Bridal';
+const TRIAL_ADMIN_EMAIL = 'admin@oursalon.pk';
+const TRIAL_ADMIN_PW = 'admin123';
+const TRIAL_ADMIN_NAME = 'Salon Manager';
+const DEFAULT_LOCK_MSG = 'This salon portal is currently paused by the owner.';
+const DEFAULT_TRIAL_DAYS = 7;
+const BUY_WHATSAPP_RAW = '03213091550';
+const BUY_WHATSAPP_INTL = '923213091550';
+
+const DEFAULT_ABOUT_TITLE = 'About Us — Modern Beauty, Hair & Bridal Care';
+const DEFAULT_ABOUT_P1 = 'OUR SALON is a modern beauty and styling studio offering hair styling, party and bridal makeup, facials, and nail care using hygienic tools, skin-safe products, and trained artists.';
+const DEFAULT_ABOUT_P2 = 'Whether you are visiting for the first time after seeing an ad or returning as a regular guest, our goal is to keep every session calm, personalized, and transparent with clear pricing, on-time appointments, and honest consultations.';
+
+const WORK_SLOTS = [
+  '10:00','11:00','12:00','13:00','14:00',
+  '15:00','16:00','17:00','18:00','19:00','20:00'
+];
+
+const ACCENTS = {
+  pink:{label:'Rose Pink',pri:'#db2777',pri2:'#ec4899',pbg:'rgba(219,39,119,.12)'},
+  purple:{label:'Plum Violet',pri:'#7c3aed',pri2:'#9333ea',pbg:'rgba(124,58,237,.12)'},
+  emerald:{label:'Spa Emerald',pri:'#059669',pri2:'#0d9488',pbg:'rgba(5,150,105,.12)'},
+  amber:{label:'Gold Amber',pri:'#d97706',pri2:'#ea580c',pbg:'rgba(217,119,6,.12)'},
+  cyan:{label:'Aqua',pri:'#0284c7',pri2:'#2563eb',pbg:'rgba(2,132,199,.12)'}
+};
+
+const LABELS = {
+  signIn:'Staff / Owner Sign In', email:'Email', password:'Password',
+  dash:'Dashboard', appointments:'Appointments', clients:'Clients',
+  services:'Services', staff:'Staff', billing:'Billing', reports:'Reports', settings:'Settings',
+  editProf:'Edit profile', exportBak:'Export backup', restoreBak:'Restore backup',
+  logout:'Log out', syncNow:'Sync now', themeBtn:'Dark / Light',
+  todayAppts:'Today\'s Appointments', revenueToday:'Revenue Today', pending:'Pending Bills',
+  completed:'Completed', noShow:'No-shows', addClient:'Add Client', addService:'Add Service',
+  addStaff:'Add Staff', editStaff:'Edit Staff', bookAppt:'Book Appointment', clientBook:'Book Appointment',
+  save:'Save', cancel:'Cancel', searchClient:'Search client, phone or email...'
+};
+const T = k => LABELS[k] || k;
+
+document.documentElement.lang = 'en';
+document.documentElement.dir = 'ltr';
+
+const _mem = {};
+const safeGet = k => { try { return localStorage.getItem(k); } catch(e) { return _mem[k] || null; } };
+const safeSet = (k, v) => { try { localStorage.setItem(k, v); } catch(e) { _mem[k] = v; } };
+const safeRemove = k => { try { localStorage.removeItem(k); } catch(e) { delete _mem[k]; } };
+
+const $ = (s,r=document)=>r.querySelector(s);
+const $$ = (s,r=document)=>Array.from(r.querySelectorAll(s));
+const esc = s => String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const iso = d => d.toLocaleDateString('en-CA');
+const TODAY = iso(new Date());
+const fmtRs = n => 'Rs. ' + Number(n||0).toLocaleString('en-PK');
+const fd = s => new Date(s+'T00:00:00').toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});
+
+const STATUS = {B:'Booked',A:'Arrived',P:'In Progress',C:'Completed',N:'No-show',X:'Cancelled'};
+const STATUS_CLS = {B:'sV',A:'sL',P:'sL',C:'sP',N:'sA',X:'sA'};
+
+function getDeviceId(){
+  let id = safeGet(DEVICE_ID_KEY);
+  if(!id){
+    id = 'dev_' + Math.random().toString(36).slice(2, 10) + '_' + Date.now().toString(36);
+    safeSet(DEVICE_ID_KEY, id);
+  }
+  return id;
+}
+
+function getCachedIp(){
+  try{
+    const raw = safeGet(IP_CACHE_KEY);
+    if(raw){
+      const parsed = JSON.parse(raw);
+      if(parsed && parsed.ip) return String(parsed.ip).trim();
+    }
+  }catch(e){}
+  return 'local-ip';
+}
+
+let currentIp = getCachedIp();
+const DEVICE_ID = getDeviceId();
+
+async function detectClientIp(){
+  const endpoints = [
+    'https://api.ipify.org?format=json',
+    'https://api64.ipify.org?format=json',
+    'https://ipapi.co/json/'
+  ];
+  for(const url of endpoints){
+    try{
+      const ctrl = new AbortController();
+      const timer = setTimeout(()=>ctrl.abort(), 3500);
+      const res = await fetch(url, {signal: ctrl.signal, cache: 'no-store'});
+      clearTimeout(timer);
+      if(!res.ok) continue;
+      const data = await res.json();
+      const found = String((data && (data.ip || data.query)) || '').trim();
+      if(found){
+        currentIp = found;
+        safeSet(IP_CACHE_KEY, JSON.stringify({ip: found, at: Date.now()}));
+        return found;
+      }
+    }catch(e){}
+  }
+  return currentIp || 'local-ip';
+}
+
+let sbClient = null;
+function getSb(){
+  if(sbClient) return sbClient;
+  if(window.supabase) sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  return sbClient;
+}
+
+function emptyDb(){
+  return {
+    orgName: DEFAULT_ORG,
+    orgTagline: DEFAULT_TAGLINE,
+    orgLogo: '',
+    accent: 'pink',
+    globalAppLocked: false,
+    globalLockMsg: DEFAULT_LOCK_MSG,
+    aboutTitle: DEFAULT_ABOUT_TITLE,
+    aboutP1: DEFAULT_ABOUT_P1,
+    aboutP2: DEFAULT_ABOUT_P2,
+    admin: {name: TRIAL_ADMIN_NAME, email: TRIAL_ADMIN_EMAIL, pw: TRIAL_ADMIN_PW, photo:''},
+    clients: [],
+    services: [],
+    staff: [],
+    appts: {},
+    bills: {},
+    audit: []
+  };
+}
+
+function emptyOwner(){
+  return {
+    ownerEmail: DEFAULT_OWNER_EMAIL,
+    ownerPw: DEFAULT_OWNER_PW,
+    ownerName: DEFAULT_OWNER_NAME,
+    ownerPhoto: '',
+    globalAppLocked: false,
+    globalLockMsg: DEFAULT_LOCK_MSG,
+    trialDays: DEFAULT_TRIAL_DAYS,
+    trialIps: {},
+    licensedClients: {}
+  };
+}
+
+let db = emptyDb();
+let owner = emptyOwner();
+let S = {
+  u:null, authModalOpen:false, trialPopupShownFor:'',
+  v:'dash', d:TODAY, q:'', f:'',
+  drawerId:null, mobMenuOpen:false,
+  tempAccent:'pink', tempPhoto:'', tempLogo:undefined
+};
+
+try{ const t = safeGet(THEME_KEY); if(t) document.documentElement.dataset.theme = t; }catch(e){}
+try{ const raw = safeGet(STORE_KEY); if(raw) db = {...emptyDb(), ...JSON.parse(raw)}; }catch(e){}
+try{ const raw = safeGet(OWNER_STORE_KEY); if(raw) owner = {...emptyOwner(), ...JSON.parse(raw)}; }catch(e){}
+try{ const s = safeGet(SESSION_KEY); if(s) S.u = JSON.parse(s); }catch(e){}
+
+function normalizeTrialDays(valDays){
+  const n = parseInt(valDays, 10);
+  if(Number.isNaN(n) || n < 1) return DEFAULT_TRIAL_DAYS;
+  return Math.min(n, 365);
+}
+
+function getTrialDurationDays(){
+  return normalizeTrialDays(owner.trialDays);
+}
+
+function ensureTrialMaps(){
+  if(!owner.trialIps || typeof owner.trialIps !== 'object') owner.trialIps = {};
+  if(!owner.licensedClients || typeof owner.licensedClients !== 'object') owner.licensedClients = {};
+  owner.trialDays = getTrialDurationDays();
+}
+
+function getClientLicense(emailOrClient){
+  ensureTrialMaps();
+  const key = String(emailOrClient || '').trim().toLowerCase();
+  if(!key) return null;
+  const map = owner.licensedClients;
+  if(Object.prototype.hasOwnProperty.call(map, key)){
+    const entry = map[key];
+    if(entry === false || entry === null) return null;
+    if(typeof entry === 'object'){
+      if(entry.active === false) return null;
+      if(entry.expiresAt && Date.now() > Number(entry.expiresAt)) return null;
+      return {active: true, label: entry.label || 'Licensed Client', expiresAt: entry.expiresAt || null};
+    }
+    if(entry) return {active: true, label: String(entry), expiresAt: null};
+  }
+  return null;
+}
+
+function hasActiveClientLicense(userObj){
+  if(!userObj) return false;
+  if(userObj.role === 'owner') return true;
+  if(getClientLicense(userObj.e)) return true;
+  if(userObj.clientKey && getClientLicense(userObj.clientKey)) return true;
+  if(userObj.ref && getClientLicense(userObj.ref)) return true;
+  return false;
+}
+
+function evaluateIpTrial(ipStr = currentIp){
+  ensureTrialMaps();
+  const ip = String(ipStr || 'local-ip').trim() || 'local-ip';
+  const days = getTrialDurationDays();
+  const durationMs = days * 24 * 60 * 60 * 1000;
+  const rec = owner.trialIps[ip];
+
+  if(!rec){
+    return {
+      ip,
+      days,
+      status: 'new',
+      startedAt: null,
+      expiresAt: null,
+      remainingMs: durationMs,
+      remainingDays: days,
+      remainingHours: days * 24,
+      devices: [],
+      logins: []
+    };
+  }
+
+  if(rec.removed){
+    return {
+      ip,
+      days: rec.days || days,
+      status: 'removed',
+      startedAt: rec.startedAt || Date.now(),
+      expiresAt: rec.expiresAt || Date.now(),
+      remainingMs: 0,
+      remainingDays: 0,
+      remainingHours: 0,
+      devices: Array.isArray(rec.devices) ? rec.devices : [],
+      logins: Array.isArray(rec.logins) ? rec.logins : []
+    };
+  }
+
+  const startedAt = Number(rec.startedAt || Date.now());
+  const recDays = normalizeTrialDays(rec.days || days);
+  const expiresAt = Number(rec.expiresAt || (startedAt + recDays * 24 * 60 * 60 * 1000));
+  const remMs = Math.max(0, expiresAt - Date.now());
+  const isExpired = remMs <= 0 || rec.status === 'expired';
+
+  return {
+    ip,
+    days: recDays,
+    status: isExpired ? 'expired' : 'active',
+    startedAt,
+    expiresAt,
+    remainingMs: remMs,
+    remainingDays: Math.ceil(remMs / (24 * 60 * 60 * 1000)),
+    remainingHours: Math.ceil(remMs / (60 * 60 * 1000)),
+    devices: Array.isArray(rec.devices) ? rec.devices : [],
+    logins: Array.isArray(rec.logins) ? rec.logins : []
+  };
+}
+
+function sweepExpiredTrials(saveIfChanged = false){
+  ensureTrialMaps();
+  let changed = false;
+  const now = Date.now();
+  Object.keys(owner.trialIps).forEach(ip=>{
+    const rec = owner.trialIps[ip];
+    if(!rec || rec.removed) return;
+    const days = normalizeTrialDays(rec.days || owner.trialDays);
+    const exp = Number(rec.expiresAt || (Number(rec.startedAt || now) + days * 24 * 60 * 60 * 1000));
+    if(!rec.expiresAt){ rec.expiresAt = exp; changed = true; }
+    if(now >= exp && rec.status !== 'expired'){
+      rec.status = 'expired';
+      changed = true;
+    }
+  });
+  if(changed && saveIfChanged){
+    persist();
+  }
+  return changed;
+}
+
+function registerIpTrialLogin(userObj, ipStr = currentIp){
+  ensureTrialMaps();
+  sweepExpiredTrials(false);
+  const ip = String(ipStr || 'local-ip').trim() || 'local-ip';
+  const days = getTrialDurationDays();
+  const now = Date.now();
+  let rec = owner.trialIps[ip];
+
+  if(!rec){
+    rec = {
+      ip,
+      days,
+      startedAt: now,
+      expiresAt: now + days * 24 * 60 * 60 * 1000,
+      status: 'active',
+      removed: false,
+      devices: [DEVICE_ID],
+      logins: [{email: userObj.e, role: userObj.role, deviceId: DEVICE_ID, at: now}]
+    };
+    owner.trialIps[ip] = rec;
+    addAudit('IP Trial Started', `IP ${ip} (${days}d trial) — ${userObj.name||userObj.e}`);
+    persist();
+    return {allowed: true, info: evaluateIpTrial(ip)};
+  }
+
+  const info = evaluateIpTrial(ip);
+  if(info.status === 'expired' || info.status === 'removed'){
+    rec.status = info.status;
+    persist();
+    return {allowed: false, info};
+  }
+
+  if(!Array.isArray(rec.devices)) rec.devices = [];
+  if(!rec.devices.includes(DEVICE_ID)) rec.devices.push(DEVICE_ID);
+  if(!Array.isArray(rec.logins)) rec.logins = [];
+  rec.logins.push({email: userObj.e, role: userObj.role, deviceId: DEVICE_ID, at: now});
+  rec.logins = rec.logins.slice(-25);
+  rec.status = 'active';
+  persist();
+  return {allowed: true, info: evaluateIpTrial(ip)};
+}
+
+function getBuyWhatsappUrl(customText=''){
+  const txt = customText || `Salam! Main ${db.orgName || DEFAULT_ORG} ke liye plan buy / trial renew karna chahta hoon. IP: ${currentIp}`;
+  return `https://wa.me/${BUY_WHATSAPP_INTL}?text=${encodeURIComponent(txt)}`;
+}
+
+function openTrialFinishedPopup(infoObj=null){
+  const info = infoObj || evaluateIpTrial(currentIp);
+  const reasonLabel = info.status === 'removed' ? 'Trial removed by owner' : '7-day / trial period completed';
+  const bodyHtml = `
+    <div class="expired-box">
+      <span class="bd sA" style="width:max-content;margin:0 auto">Trial is finished</span>
+      <h2 style="color:var(--A);font-size:20px">Trial is finished</h2>
+      <p class="mut sm" style="margin:0">${esc(reasonLabel)}. Trial login on IP <b>${esc(info.ip)}</b> is blocked until the owner extends the trial or adds a client account.</p>
+      <div class="buy-card">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
+          <b>Buy / Renewal Contact</b>
+          <span class="bd sP">${esc(BUY_WHATSAPP_RAW)}</span>
+        </div>
+        <div class="mut sm">WhatsApp / Call: <b>${esc(BUY_WHATSAPP_RAW)}</b></div>
+        <div class="bar" style="margin:2px 0 0">
+          <a class="b wa sm" href="${esc(getBuyWhatsappUrl())}" target="_blank" rel="noopener noreferrer">WhatsApp Buy / Renew (${esc(BUY_WHATSAPP_RAW)})</a>
+          <a class="b sm" href="tel:${esc(BUY_WHATSAPP_RAW)}">Call ${esc(BUY_WHATSAPP_RAW)}</a>
+        </div>
+      </div>
+    </div>`;
+  modal('Trial is finished', bodyHtml, null, null, false);
+}
+
+function trialFinishedBlockHtml(infoObj=null){
+  const info = infoObj || evaluateIpTrial(currentIp);
+  const reasonLabel = info.status === 'removed' ? 'Trial removed by owner' : `${info.days}-day trial period finished`;
+  return `<div class="expired-box" style="margin-bottom:10px">
+    <span class="bd sA" style="width:max-content;margin:0 auto">Trial is finished</span>
+    <h3 style="color:var(--A);font-size:18px">Trial is finished</h3>
+    <p class="mut sm" style="margin:0">${esc(reasonLabel)}. Further trial login for IP <b>${esc(info.ip)}</b> is blocked until Owner extends trial or adds a client account.</p>
+    <div class="buy-card">
+      <b>Buy / Renewal Option — ${esc(BUY_WHATSAPP_RAW)}</b>
+      <div class="mut sm">Contact WhatsApp / Phone: <b>${esc(BUY_WHATSAPP_RAW)}</b></div>
+      <div class="bar" style="margin:2px 0 0">
+        <a class="b wa sm" href="${esc(getBuyWhatsappUrl())}" target="_blank" rel="noopener noreferrer">WhatsApp Buy / Renew</a>
+        <a class="b sm" href="tel:${esc(BUY_WHATSAPP_RAW)}">Call ${esc(BUY_WHATSAPP_RAW)}</a>
+      </div>
+    </div>
+  </div>`;
+}
+
+function hasAnySeededContent(){
+  return (Array.isArray(db.services) && db.services.length > 0) ||
+         (Array.isArray(db.clients) && db.clients.length > 0) ||
+         (Array.isArray(db.staff) && db.staff.length > 0);
+}
+
+function syncKillSwitchFlags(){
+  const locked = !!(owner.globalAppLocked || db.globalAppLocked);
+  owner.globalAppLocked = locked;
+  db.globalAppLocked = locked;
+  const msg = (owner.globalLockMsg || db.globalLockMsg || DEFAULT_LOCK_MSG).trim() || DEFAULT_LOCK_MSG;
+  owner.globalLockMsg = msg;
+  db.globalLockMsg = msg;
+  return locked;
+}
+
+function enforceRemoteLock(){
+  sweepExpiredTrials(false);
+  const locked = syncKillSwitchFlags();
+  if(locked && S.u && S.u.role !== 'owner'){
+    S.u = null;
+    safeRemove(SESSION_KEY);
+    closeDr();
+    toast('Portal locked by owner');
+    return;
+  }
+
+  if(S.u && S.u.role !== 'owner' && !hasActiveClientLicense(S.u)){
+    const info = evaluateIpTrial(currentIp);
+    if(info.status === 'expired' || info.status === 'removed'){
+      S.u = null;
+      safeRemove(SESSION_KEY);
+      closeDr();
+      if(S.trialPopupShownFor !== info.ip + ':' + info.status){
+        S.trialPopupShownFor = info.ip + ':' + info.status;
+        setTimeout(()=>openTrialFinishedPopup(info), 80);
+      }
+      toast('Trial is finished');
+    }
+  }
+}
+
+function applyAccent(){
+  const a = ACCENTS[db.accent] || ACCENTS.pink;
+  const r = document.documentElement.style;
+  r.setProperty('--pri', a.pri);
+  r.setProperty('--pri2', a.pri2);
+  r.setProperty('--pbg', a.pbg);
+}
+applyAccent();
+
+let syncStatus = 'Local mode';
+
+function toast(m){
+  const t = $('#toast');
+  if(!t) return;
+  t.textContent = m;
+  t.style.opacity = 1;
+  clearTimeout(toast.t);
+  toast.t = setTimeout(()=>t.style.opacity=0, 2400);
+}
+
+function modal(title, body, okLabel, cb, wide){
+  $('#m').innerHTML = `<div class="ov" data-a="mx"><div class="md ${wide?'w':''}" role="dialog" aria-modal="true" aria-label="${esc(title)}"><h3>${esc(title)}</h3>${body}<div class="mf"><button class="b" data-a="mx">${okLabel?T('cancel'):'Close'}</button>${okLabel?`<button class="b pri" data-a="mok">${esc(okLabel)}</button>`:''}</div></div></div>`;
+  modal.cb = cb;
+}
+const closeM = () => { S.authModalOpen = false; $('#m').innerHTML = ''; };
+const val = id => ($('#'+id)||{}).value || '';
+function closeDr(){ S.drawerId = null; $('#dr').innerHTML = ''; }
+function openDr(id){
+  if(!S.u || !cOf(id)) return;
+  S.drawerId = id;
+  $('#dr').innerHTML = `<aside class="dr" role="dialog" aria-label="Client details">${clientDrawerHtml(id)}</aside>`;
+}
+
+function addAudit(action, detail=''){
+  const by = (S.u && (S.u.name || S.u.e)) || 'Client / Website';
+  db.audit = (db.audit||[]).concat([{action, detail, by, at: new Date().toISOString()}]).slice(-60);
+}
+
+function persist(){
+  syncKillSwitchFlags();
+  ensureTrialMaps();
+  safeSet(STORE_KEY, JSON.stringify(db));
+  safeSet(OWNER_STORE_KEY, JSON.stringify(owner));
+  const sb = getSb();
+  if(!sb) return;
+  syncStatus = 'Saving...';
+  updateSync();
+  const upserts = [
+    sb.from('app_state').upsert({id:MAIN_CLOUD_ID, data:db, updated_at:new Date().toISOString()},{onConflict:'id'}),
+    sb.from('app_state').upsert({id:OWNER_CLOUD_ID, data:owner, updated_at:new Date().toISOString()},{onConflict:'id'})
+  ];
+  Promise.all(upserts)
+    .then(()=>{ syncStatus='Live synced'; updateSync(); })
+    .catch(()=>{ syncStatus='Sync error'; updateSync(); });
+}
+
+function updateSync(){
+  $$('.sync').forEach(el=>{
+    el.classList.toggle('err', syncStatus==='Sync error');
+    const n = Array.from(el.childNodes).find(x=>x.nodeType===3);
+    if(n) n.nodeValue = syncStatus;
+  });
+}
+
+async function loadCloud(){
+  await detectClientIp();
+  const sb = getSb();
+  if(!sb){
+    enforceRemoteLock();
+    render(false);
+    return;
+  }
+  try{
+    const [mainRes, ownRes] = await Promise.all([
+      sb.from('app_state').select('data').eq('id',MAIN_CLOUD_ID).maybeSingle(),
+      sb.from('app_state').select('data').eq('id',OWNER_CLOUD_ID).maybeSingle()
+    ]);
+    if(ownRes && !ownRes.error && ownRes.data && ownRes.data.data){
+      const cloudOwn = {...emptyOwner(), ...ownRes.data.data};
+      const localHasTrial = Object.keys((owner && owner.trialIps) || {}).length > 0 || Object.keys((owner && owner.licensedClients) || {}).length > 0;
+      const cloudHasTrial = Object.keys((cloudOwn && cloudOwn.trialIps) || {}).length > 0 || Object.keys((cloudOwn && cloudOwn.licensedClients) || {}).length > 0;
+      if(!cloudHasTrial && localHasTrial){
+        cloudOwn.trialIps = owner.trialIps;
+        cloudOwn.licensedClients = owner.licensedClients;
+        cloudOwn.trialDays = owner.trialDays || DEFAULT_TRIAL_DAYS;
+      }
+      owner = cloudOwn;
+      safeSet(OWNER_STORE_KEY, JSON.stringify(owner));
+    }
+    if(mainRes && !mainRes.error && mainRes.data && mainRes.data.data){
+      const hasCloudRich = (Array.isArray(mainRes.data.data.clients)&&mainRes.data.data.clients.length) || (Array.isArray(mainRes.data.data.services)&&mainRes.data.data.services.length) || (mainRes.data.data.orgName && mainRes.data.data.orgName!==DEFAULT_ORG) || (typeof mainRes.data.data.globalAppLocked==='boolean');
+      const hasLocalRich = (Array.isArray(db.clients)&&db.clients.length) || (Array.isArray(db.services)&&db.services.length) || (db.orgName && db.orgName!==DEFAULT_ORG);
+      if(hasCloudRich || !hasLocalRich){
+        db = {...emptyDb(), ...mainRes.data.data};
+        safeSet(STORE_KEY, JSON.stringify(db));
+      }
+    }
+    if(typeof db.globalAppLocked === 'boolean' && typeof owner.globalAppLocked !== 'boolean'){
+      owner.globalAppLocked = db.globalAppLocked;
+    }
+    enforceRemoteLock();
+    applyAccent();
+    syncStatus = 'Live synced';
+    render(false);
+  }catch(e){
+    syncStatus='Sync error';
+    enforceRemoteLock();
+    render(false);
+  }
+  updateSync();
+}
+
+function brandHtml(small=false){
+  const logo = db.orgLogo ? `<img class="org-img" src="${db.orgLogo}" alt="${esc(db.orgName||DEFAULT_ORG)}" style="${small?'width:24px;height:24px':''}">` : '';
+  return `<div class="logo">${logo}<span class="brand-txt">${esc(db.orgName||DEFAULT_ORG)}</span></div>`;
+}
+
+function avOf(name, photo='', cls=''){
+  if(photo) return `<span class="av ${cls}"><img src="${photo}" alt="${esc(name||'')}" loading="lazy"></span>`;
+  return `<span class="av ${cls}">${esc((name||'?')[0].toUpperCase())}</span>`;
+}
+
+function findStaffForUser(u){
+  if(!u) return null;
+  if(u.ref){
+    const byId = stOf(u.ref);
+    if(byId) return byId;
+  }
+  if(u.e){
+    return db.staff.find(s => (s.email||'').toLowerCase() === u.e.toLowerCase()) || null;
+  }
+  return null;
+}
+
+function getCurrentProfile(){
+  if(!S.u) return {name:'', photo:''};
+  if(S.u.role==='owner') return {name: owner.ownerName || S.u.name || DEFAULT_OWNER_NAME, photo: owner.ownerPhoto || ''};
+  if(S.u.role==='admin') return {name: (db.admin && db.admin.name) || S.u.name || TRIAL_ADMIN_NAME, photo: (db.admin && db.admin.photo) || ''};
+  if(S.u.role==='staff'){
+    const st = findStaffForUser(S.u);
+    return {name: (st && st.name) || S.u.name || '', photo: (st && st.photo) || ''};
+  }
+  return {name: S.u.name || '', photo: ''};
+}
+
+function readPhotoFile(file, cb, maxSide=240){
+  if(!file || !file.type.startsWith('image/')){ toast('Please select an image file'); return; }
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const img = new Image();
+    img.onload = () => {
+      let w = img.width, h = img.height;
+      if(w > h && w > maxSide){ h = Math.round(h*maxSide/w); w = maxSide; }
+      else if(h >= w && h > maxSide){ w = Math.round(w*maxSide/h); h = maxSide; }
+      const cv = document.createElement('canvas');
+      cv.width = w; cv.height = h;
+      cv.getContext('2d').drawImage(img, 0, 0, w, h);
+      cb(cv.toDataURL('image/jpeg', 0.82));
+    };
+    img.src = ev.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function getUsers(){
+  ensureTrialMaps();
+  const baseUsers = [
+    {e:(owner.ownerEmail||DEFAULT_OWNER_EMAIL).toLowerCase(), pw:owner.ownerPw||DEFAULT_OWNER_PW, role:'owner', name:owner.ownerName||DEFAULT_OWNER_NAME},
+    {e:(db.admin.email||TRIAL_ADMIN_EMAIL).toLowerCase(), pw:db.admin.pw||TRIAL_ADMIN_PW, role:'admin', name:db.admin.name||TRIAL_ADMIN_NAME},
+    ...db.staff.map(s=>({e:(s.email||'').toLowerCase(), pw:s.pw||'staff123', role:'staff', name:s.name, ref:s.id}))
+  ];
+  Object.entries(owner.licensedClients || {}).forEach(([k, v])=>{
+    if(v && typeof v === 'object' && v.active !== false && v.email){
+      const em = String(v.email).toLowerCase();
+      if(!baseUsers.some(u=>u.e===em)){
+        baseUsers.push({
+          e: em,
+          pw: v.pw || '',
+          role: v.role || 'admin',
+          name: v.name || v.label || em,
+          clientKey: k
+        });
+      }
+    }
+  });
+  return baseUsers;
+}
+
+function cOf(id){ return db.clients.find(c=>c.id===id); }
+function sOf(id){ return db.services.find(s=>s.id===id); }
+function stOf(id){ return db.staff.find(s=>s.id===id); }
+
+function dayAppts(d){
+  return (db.appts[d]||[]).slice().sort((a,b)=>a.time.localeCompare(b.time));
+}
+
+function revenueOf(d){
+  let total = 0;
+  (db.appts[d]||[]).forEach(a=>{
+    if(a.status==='C'){
+      const svc = sOf(a.serviceId);
+      total += Number(a.price || (svc && svc.price) || 0);
+    }
+  });
+  return total;
+}
+
+function pendingBills(){
+  let n = 0;
+  Object.values(db.bills||{}).forEach(b=>{ if(b.status!=='Paid') n++; });
+  return n;
+}
+
+function isActiveSlotAppt(a){
+  return a && !['X','N'].includes(a.status);
+}
+
+function getOverlappingGroups(dateStr){
+  const active = (db.appts[dateStr]||[]).filter(isActiveSlotAppt);
+  const byTime = {};
+  active.forEach(a=>{
+    if(!byTime[a.time]) byTime[a.time] = [];
+    byTime[a.time].push(a);
+  });
+  return Object.entries(byTime)
+    .filter(([, list]) => list.length >= 2)
+    .sort((a, b) => a[0].localeCompare(b[0]));
+}
+
+function findSlotConflicts(dateStr, timeStr, staffId='', excludeApptId=''){
+  const list = (db.appts[dateStr]||[]).filter(a=>isActiveSlotAppt(a) && a.id!==excludeApptId);
+  return list.filter(a=>{
+    if(a.time !== timeStr) return false;
+    if(!staffId || !a.staffId) return true;
+    return a.staffId === staffId;
+  });
+}
+
+function slotChartHtml(dateStr, timeStr, staffId='', timeInputId='apTime', excludeApptId=''){
+  const d = dateStr || TODAY;
+  const active = (db.appts[d]||[]).filter(a=>isActiveSlotAppt(a) && a.id!==excludeApptId);
+  const conflicts = findSlotConflicts(d, timeStr, staffId, excludeApptId);
+
+  const slots = WORK_SLOTS.map(t=>{
+    const hits = active.filter(a=>{
+      if(a.time !== t) return false;
+      if(!staffId || !a.staffId) return true;
+      return a.staffId === staffId;
+    });
+    const picked = timeStr === t ? 'picked' : '';
+    if(hits.length >= 2){
+      const names = hits.map(h=>{ const cl=cOf(h.clientId); return cl ? cl.name.split(' ')[0] : 'Client'; }).join(' + ');
+      return `<button type="button" class="slot-btn overlap ${picked}" data-a="pickSlot" data-v="${t}" data-target="${esc(timeInputId)}" title="${esc(`${t} — ${hits.length} clients booked: ${names}`)}">
+        <b>${esc(t)}</b>
+        <span class="st-lbl">${hits.length} Booked (Overlap!)</span>
+        <span class="mut sm" style="font-size:11px">${esc(names)}</span>
+      </button>`;
+    }
+    if(hits.length === 1){
+      const hit = hits[0];
+      const cl = cOf(hit.clientId);
+      const st = stOf(hit.staffId);
+      const who = cl ? cl.name.split(' ')[0] : 'Booked';
+      const whoStaff = st ? ` (${st.name})` : '';
+      return `<button type="button" class="slot-btn busy ${picked}" data-a="pickSlot" data-v="${t}" data-target="${esc(timeInputId)}" title="${esc(`${t} — ${who}${whoStaff} (${STATUS[hit.status]||hit.status})`)}">
+        <b>${esc(t)}</b>
+        <span class="st-lbl">Booked · ${esc(who)}</span>
+      </button>`;
+    }
+    return `<button type="button" class="slot-btn free ${picked}" data-a="pickSlot" data-v="${t}" data-target="${esc(timeInputId)}" title="${esc(`${t} — Free slot`)}">
+      <b>${esc(t)}</b>
+      <span class="st-lbl">Free</span>
+    </button>`;
+  }).join('');
+
+  const warnHtml = conflicts.length
+    ? `<div class="conflict-warn">
+        <div>${conflicts.length >= 2 ? `${conflicts.length} clients already booked` : 'Already booked'} at ${esc(timeStr)} on ${esc(fd(d))}:</div>
+        ${conflicts.map(a=>{
+          const cl = cOf(a.clientId);
+          const st = stOf(a.staffId);
+          return `<div class="overlap-item">
+            <span><b>${esc(cl?cl.name:'Client')}</b> · ${esc(st?st.name:'Any staff')} (${esc(STATUS[a.status]||a.status)})</span>
+            ${S.u ? `<button type="button" class="b sm" data-a="changeApptTime" data-id="${a.id}" data-date="${esc(d)}">Change Time</button>` : ''}
+          </div>`;
+        }).join('')}
+      </div>`
+    : `<div class="mut sm" style="color:var(--P);font-weight:600">Selected time ${esc(timeStr)} is open on ${esc(fd(d))}.</div>`;
+
+  return `<div class="slot-chart">
+    <div class="slot-head">
+      <b>Day Slot Availability Chart (${esc(fd(d))})</b>
+      <span class="mut sm">Click any slot to set time</span>
+    </div>
+    <div class="slot-grid">${slots}</div>
+    ${warnHtml}
+  </div>`;
+}
+
+function refreshBookingSlotChart(dateId, timeId, staffId, chartBoxId, excludeApptId=''){
+  const box = $('#'+chartBoxId);
+  if(!box) return;
+  const d = val(dateId) || TODAY;
+  const t = val(timeId) || '11:00';
+  const st = staffId ? val(staffId) : '';
+  box.innerHTML = slotChartHtml(d, t, st, timeId, excludeApptId);
+}
+
+function openChangeTimeModal(apptId, origDate){
+  const dKey = origDate || S.d || TODAY;
+  const list = db.appts[dKey] || [];
+  const ap = list.find(x=>x.id===apptId);
+  if(!ap){ toast('Appointment not found'); return; }
+  const cl = cOf(ap.clientId);
+  const sv = sOf(ap.serviceId);
+
+  modal(`Change Time — ${cl ? cl.name : 'Client'}`, `
+    <p class="mut sm">Current: <b>${esc(fd(dKey))}</b> at <b>${esc(ap.time)}</b> · ${esc(sv?sv.name:'Service')}. Pick a new time or date for this client.</p>
+    <div class="fl">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <label>New Date<input type="date" id="rsDate" value="${esc(dKey)}"></label>
+        <label>New Time<input type="time" id="rsTime" value="${esc(ap.time)}"></label>
+      </div>
+      <div id="rsSlotBox" data-appt-id="${esc(ap.id)}">${slotChartHtml(dKey, ap.time, ap.staffId || '', 'rsTime', ap.id)}</div>
+    </div>
+  `, 'Update Time', async ()=>{
+    const newDate = val('rsDate') || dKey;
+    const newTime = val('rsTime') || ap.time;
+    if(!newTime){ toast('Time required'); return false; }
+
+    db.appts[dKey] = (db.appts[dKey]||[]).filter(x=>x.id!==ap.id);
+    if(!db.appts[dKey].length) delete db.appts[dKey];
+
+    const updatedAppt = {...ap, time: newTime};
+    db.appts[newDate] = db.appts[newDate] || [];
+    db.appts[newDate].push(updatedAppt);
+
+    addAudit('Time Changed', `${cl?cl.name:'Client'} moved to ${newDate} ${newTime} (was ${dKey} ${ap.time})`);
+    persist();
+    S.d = newDate;
+    render();
+    toast(`Time updated to ${newTime}`);
+  });
+}
+
+function openStaffOwnerModal(){
+  S.authModalOpen = true;
+  sweepExpiredTrials(false);
+  const locked = syncKillSwitchFlags();
+  const msg = owner.globalLockMsg || db.globalLockMsg || DEFAULT_LOCK_MSG;
+  const trialInfo = evaluateIpTrial(currentIp);
+  const trialBlocked = (trialInfo.status === 'expired' || trialInfo.status === 'removed');
+
+  modal(T('signIn'), `
+    ${locked ? `<div class="al">Kill Switch ON: ${esc(msg)} (Only Owner can sign in)</div>` : ''}
+    ${trialBlocked ? trialFinishedBlockHtml(trialInfo) : `<p class="mut sm">Current IP: <b>${esc(trialInfo.ip)}</b> · Trial duration: <b>${esc(trialInfo.days)} days</b>${trialInfo.status==='active'?` · <b>${esc(trialInfo.remainingDays)}d (${esc(trialInfo.remainingHours)}h) left</b>`:' · Starts on first trial login'}</p>`}
+    <div class="fl">
+      <label>${esc(T('email'))}<input id="le" type="email" autocomplete="off" placeholder="Enter your email"></label>
+      <label>${esc(T('password'))}<input id="lp" type="password" autocomplete="new-password" placeholder="Enter your password"></label>
+    </div>
+  `, 'Sign In', async ()=>{
+    const em = val('le').trim().toLowerCase(), pw = val('lp');
+    if(!em || !pw){ toast('Email and password required'); return false; }
+    await detectClientIp();
+    sweepExpiredTrials(false);
+
+    const u = getUsers().find(x=>{
+      if(x.e !== em) return false;
+      if(x.pw === pw) return true;
+      const lic = getClientLicense(em);
+      return !!(lic && x.pw === pw);
+    });
+
+    if(!u){ toast('Invalid email or password'); return false; }
+    if(syncKillSwitchFlags() && u.role !== 'owner'){
+      toast(owner.globalLockMsg || db.globalLockMsg || DEFAULT_LOCK_MSG);
+      return false;
+    }
+
+    const licensed = hasActiveClientLicense(u);
+    if(u.role !== 'owner' && !licensed){
+      const check = registerIpTrialLogin(u, currentIp);
+      if(!check.allowed){
+        S.trialPopupShownFor = check.info.ip + ':' + check.info.status;
+        toast('Trial is finished');
+        setTimeout(()=>openTrialFinishedPopup(check.info), 60);
+        return false;
+      }
+    }
+
+    S.u = u;
+    S.authModalOpen = false;
+    S.trialPopupShownFor = '';
+    safeSet(SESSION_KEY, JSON.stringify(u));
+    S.v = 'dash';
+    closeDr();
+    render();
+    toast('Welcome, ' + u.name);
+    loadCloud();
+  });
+}
+
+function openClientSelfBooking(preServiceId=''){
+  if(syncKillSwitchFlags()){
+    toast(owner.globalLockMsg || db.globalLockMsg || DEFAULT_LOCK_MSG);
+    return;
+  }
+  const svcOpts = db.services.length
+    ? db.services.map(s=>`<option value="${s.id}" ${s.id===preServiceId?'selected':''}>${esc(s.name)} (${fmtRs(s.price)})</option>`).join('')
+    : '<option value="">General Salon Service</option>';
+
+  modal('Book Appointment — Client Form', `
+    <p class="mut sm">Check the chart below before booking so you pick an open slot.</p>
+    <div class="fl">
+      <label>Your Name *<input id="cbName" placeholder="e.g. Hina Tariq"></label>
+      <label>Phone / WhatsApp *<input id="cbPhone" placeholder="03001234567"></label>
+      <label>Your Email (optional)<input id="cbEmail" type="email" placeholder="hina@example.com"></label>
+      <label>Service<select id="cbService">${svcOpts}</select></label>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <label>Date<input type="date" id="cbDate" value="${TODAY}"></label>
+        <label>Preferred Time<input type="time" id="cbTime" value="14:00"></label>
+      </div>
+      <div id="cbSlotBox">${slotChartHtml(TODAY, '14:00', '', 'cbTime')}</div>
+      <label>Notes (ad offer or styling preference)<textarea id="cbNotes" placeholder="e.g. Saw your ad for facial or haircut..."></textarea></label>
+    </div>
+  `, 'Book Now', async ()=>{
+    const name = val('cbName').trim();
+    const phone = val('cbPhone').trim();
+    const email = val('cbEmail').trim().toLowerCase();
+    const serviceId = val('cbService');
+    const date = val('cbDate') || TODAY;
+    const time = val('cbTime') || '14:00';
+    const notes = val('cbNotes').trim();
+
+    if(!name || !phone){
+      toast('Name and phone number are required');
+      return false;
+    }
+
+    let cl = db.clients.find(c =>
+      (email && (c.email||'').toLowerCase() === email) ||
+      (phone && (c.phone||'').replace(/\D/g,'') === phone.replace(/\D/g,''))
+    );
+
+    if(!cl){
+      cl = {
+        id: 'c'+Date.now(),
+        name,
+        phone,
+        email,
+        gender: 'Female',
+        notes: notes || 'Booked via salon website',
+        photo: ''
+      };
+      db.clients.push(cl);
+    } else {
+      if(email && !cl.email) cl.email = email;
+      if(notes) cl.notes = cl.notes ? `${cl.notes} | ${notes}` : notes;
+    }
+
+    let svc = sOf(serviceId);
+    if(!svc && db.services.length) svc = db.services[0];
+    const price = svc ? Number(svc.price||0) : 0;
+
+    db.appts[date] = db.appts[date] || [];
+    db.appts[date].push({
+      id: 'a'+Date.now(),
+      clientId: cl.id,
+      serviceId: svc ? svc.id : '',
+      staffId: '',
+      time,
+      status: 'B',
+      price,
+      source: 'Client Web',
+      createdAt: new Date().toISOString()
+    });
+
+    addAudit('Web Booking', `${cl.name} (${phone}) — ${svc?svc.name:'Service'} on ${date} ${time}`);
+    persist();
+    if(S.u){ S.d = date; render(); }
+    toast('Appointment request booked!');
+  });
+}
+
+function PublicStorefront(){
+  if(syncKillSwitchFlags()){
+    const msg = owner.globalLockMsg || db.globalLockMsg || DEFAULT_LOCK_MSG;
+    return `<div class="lg"><div class="card" style="text-align:center">
+      <div style="display:flex;justify-content:center">${brandHtml()}</div>
+      <h2>Portal Paused</h2>
+      <div class="al">${esc(msg)}</div>
+      <button type="button" class="b pri" data-a="openAuthModal">${esc(T('signIn'))}</button>
+    </div></div>`;
+  }
+
+  return `<div class="pub-wrap">
+    <header class="pub-nav">
+      ${brandHtml()}
+      <nav class="pub-links" aria-label="Salon sections">
+        <a href="#about">About Us</a>
+        <a href="#work">Services</a>
+        <a href="#team">Team</a>
+      </nav>
+      <div style="flex:1"></div>
+      <span class="sync ${syncStatus==='Sync error'?'err':''}"><i></i>${esc(syncStatus)}</span>
+      <button type="button" class="b sm pri" data-a="clientBook">${esc(T('clientBook'))}</button>
+      <button type="button" class="b sm" data-a="openAuthModal">${esc(T('signIn'))}</button>
+      <button type="button" class="b sm" data-a="theme" aria-label="Theme">◐</button>
+    </header>
+
+    <section class="hero">
+      <div class="card hero-main">
+        <span class="bd sV" style="width:max-content">${esc(db.orgTagline||DEFAULT_TAGLINE)}</span>
+        <div class="hero-title">${esc(db.orgName||DEFAULT_ORG)} — Glow, Groom &amp; Feel Confident</div>
+        <p class="mut" style="margin:0">Hair styling, party and bridal makeup, skin facials, and nail care all in one place. Book your preferred time slot or explore our services below.</p>
+        <div class="bar" style="margin:4px 0 0">
+          <button type="button" class="b pri" data-a="clientBook">${esc(T('clientBook'))}</button>
+          <a class="b" href="#work">Services &amp; Rates</a>
+        </div>
+      </div>
+      <div class="card" style="display:grid;gap:10px;align-content:center">
+        <h2>Studio Highlights</h2>
+        <div class="mut sm">• Clean, sanitized salon tools &amp; stations</div>
+        <div class="mut sm">• Transparent pricing &amp; easy slot booking</div>
+        <div class="mut sm">• Bridal, party, hair &amp; skin specialists</div>
+        <hr style="border:0;border-top:1px solid var(--line);margin:2px 0">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
+          <span class="mut sm">Owner or Staff?</span>
+          <button type="button" class="b sm" data-a="openAuthModal">${esc(T('signIn'))}</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="card article-box">
+      <span class="bd sP" style="width:max-content">About Us • Studio Story</span>
+      <h2>${esc(db.aboutTitle||DEFAULT_ABOUT_TITLE)}</h2>
+      <p>${esc(db.aboutP1||DEFAULT_ABOUT_P1)}</p>
+      <p>${esc(db.aboutP2||DEFAULT_ABOUT_P2)}</p>
+    </section>
+
+    <section id="work" style="display:grid;gap:12px">
+      <div class="ph" style="margin-bottom:0">
+        <h2>Our Services &amp; Pricing</h2>
+        <button type="button" class="b sm pri" data-a="clientBook">${esc(T('clientBook'))}</button>
+      </div>
+      <div class="svc-grid">
+        ${db.services.length ? db.services.map(s=>`<div class="card svc-card">
+          <div>
+            <div class="svc-top">
+              <b>${esc(s.name)}</b>
+              <span class="price-tag">${fmtRs(s.price)}</span>
+            </div>
+            <div class="mut sm" style="margin-top:4px">${esc(s.cat||'General')} · ~${esc(s.mins||30)} min</div>
+          </div>
+          <div style="padding-top:6px">
+            <button type="button" class="b sm pri" style="width:100%" data-a="clientBook" data-id="${s.id}">Book This Service</button>
+          </div>
+        </div>`).join('') : '<div class="emp">Services will be updated soon.</div>'}
+      </div>
+    </section>
+
+    <section id="team" style="display:grid;gap:12px">
+      <h2>Our Artists &amp; Specialists</h2>
+      <div class="staff-grid">
+        ${db.staff.length ? db.staff.map(st=>`<div class="card" style="display:flex;align-items:center;gap:10px">
+          ${avOf(st.name, st.photo, 'lg-av')}
+          <div>
+            <b>${esc(st.name)}</b>
+            <div class="mut sm">${esc(st.skills||'Salon Specialist')}</div>
+          </div>
+        </div>`).join('') : '<div class="emp">Salon specialists team ready.</div>'}
+      </div>
+    </section>
+
+    <footer class="card" style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+      <span class="mut sm">${esc(db.orgName||DEFAULT_ORG)} · v${esc(APP_VERSION)}</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button type="button" class="b sm" data-a="clientBook">Book Slot</button>
+        <button type="button" class="b sm" data-a="openAuthModal">${esc(T('signIn'))}</button>
+      </div>
+    </footer>
+  </div>`;
+}
+
+function trialSessionBannerHtml(){
+  if(!S.u || S.u.role==='owner' || hasActiveClientLicense(S.u)) return '';
+  const info = evaluateIpTrial(currentIp);
+  if(info.status !== 'active') return '';
+  const warnCls = info.remainingDays <= 2 ? 'warn' : '';
+  return `<div class="trial-bar ${warnCls}">
+    <div class="sm">
+      <b>IP Trial Active</b> (${esc(info.ip)}) — <b>${esc(info.remainingDays)} day(s)</b> (${esc(info.remainingHours)}h) remaining of ${esc(info.days)}-day trial · Devices on IP: <b>${info.devices.length||1}</b>
+    </div>
+    <button type="button" class="b sm" data-a="showTrialInfo">Buy / Trial Info (${esc(BUY_WHATSAPP_RAW)})</button>
+  </div>`;
+}
+
+function Shell(){
+  const u = S.u;
+  const prof = getCurrentProfile();
+  const nav = [
+    ['dash', T('dash')],
+    ['appointments', T('appointments')],
+    ['clients', T('clients')],
+    ['services', T('services')],
+    ['staff', T('staff')],
+    ['billing', T('billing')],
+    ['reports', T('reports')],
+    ['settings', T('settings')]
+  ].filter(x => u.role!=='staff' || !['settings','staff','services'].includes(x[0]));
+
+  const sideNav = nav.map(([v,l])=>`<button class="nv ${S.v===v?'on':''}" data-a="nav" data-v="${v}">${esc(l)}</button>`).join('');
+  const mobNav = nav.map(([v,l])=>`<button type="button" class="${S.v===v?'on':''}" data-a="nav" data-v="${v}"><span>${esc(l)}</span>${S.v===v?'<span>●</span>':''}</button>`).join('');
+
+  return `<div class="shell">
+    <aside class="side">
+      ${brandHtml()}
+      <div class="mut sm" style="padding:0 10px 10px">${esc(db.orgTagline||'')}</div>
+      ${sideNav}
+      <div style="flex:1"></div>
+      <button class="nv" data-a="myProfile">${esc(T('editProf'))}</button>
+      <button class="nv" data-a="syncNow">${esc(T('syncNow'))}</button>
+      <button class="nv" data-a="theme">${esc(T('themeBtn'))}</button>
+      <button class="nv" data-a="backupJson">${esc(T('exportBak'))}</button>
+      <button class="nv" data-a="logout">${esc(T('logout'))}</button>
+      <div class="mut sm" style="padding:8px 12px">v${esc(APP_VERSION)}</div>
+    </aside>
+    <div>
+      <div class="top">
+        <span class="mut sm">${fd(TODAY)}</span>
+        <span class="sync ${syncStatus==='Sync error'?'err':''}"><i></i>${esc(syncStatus)}</span>
+        ${syncKillSwitchFlags()?'<span class="bd sA">Kill Switch ON</span>':''}
+        <div class="sp"></div>
+        <button type="button" class="chip" data-a="myProfile" title="${esc(T('editProf'))}">
+          ${avOf(prof.name, prof.photo)}
+          <span class="role">${esc(u.role)}</span>
+        </button>
+        <button type="button" class="b sm" data-a="logout">${esc(T('logout'))}</button>
+        <div class="mob-dots-wrap">
+          <button type="button" class="b sm mob-dots-btn" data-a="mobDots" aria-label="Menu" aria-expanded="${S.mobMenuOpen?'true':'false'}">⋮</button>
+          ${S.mobMenuOpen?`<div class="mob-dots-backdrop" data-a="mobDotsClose"></div><div class="mob-dots-menu" role="menu">${mobNav}<hr><button type="button" data-a="myProfile">${esc(T('editProf'))}</button><button type="button" data-a="syncNow">${esc(T('syncNow'))}</button><button type="button" data-a="theme">${esc(T('themeBtn'))}</button><button type="button" data-a="backupJson">${esc(T('exportBak'))}</button><button type="button" data-a="logout" style="color:var(--A)">${esc(T('logout'))}</button></div>`:''}
+        </div>
+        <input id="gq" class="top-search" placeholder="${esc(T('searchClient'))}" aria-label="${esc(T('searchClient'))}" value="${esc(S.q)}">
+      </div>
+      <main id="mn">${trialSessionBannerHtml()}${View()}</main>
+    </div>
+  </div>`;
+}
+
+function View(){
+  return ({
+    dash: Dash,
+    appointments: Appointments,
+    clients: Clients,
+    services: Services,
+    staff: StaffView,
+    billing: Billing,
+    reports: Reports,
+    settings: Settings
+  }[S.v] || Dash)();
+}
+
+function Dash(){
+  const appts = dayAppts(TODAY);
+  const completed = appts.filter(a=>a.status==='C').length;
+  const noshow = appts.filter(a=>a.status==='N').length;
+  const rev = revenueOf(TODAY);
+  const pend = pendingBills();
+  const upcoming = appts.filter(a=>!['C','X','N'].includes(a.status)).slice(0,8);
+
+  return `${syncKillSwitchFlags()&&S.u.role==='owner'?`<div class="al">Owner Kill Switch is currently ON — non-owner logins and portal access are paused.</div>`:''}<div class="ph"><h1>${esc(T('dash'))}</h1>
+    <div class="bar" style="margin:0">
+      <button class="b sm" data-a="addClient">${esc(T('addClient'))}</button>
+      <button class="b pri sm" data-a="bookAppt">${esc(T('bookAppt'))}</button>
+    </div>
+  </div>
+  <div class="kp">
+    <div class="card"><span class="mut">${esc(T('todayAppts'))}</span><b>${appts.length}</b></div>
+    <div class="card"><span class="mut">${esc(T('revenueToday'))}</span><b class="ok">${fmtRs(rev)}</b></div>
+    <div class="card"><span class="mut">${esc(T('completed'))}</span><b class="ok">${completed}</b></div>
+    <div class="card"><span class="mut">${esc(T('noShow'))}</span><b class="bad">${noshow}</b></div>
+    <div class="card"><span class="mut">${esc(T('pending'))}</span><b class="${pend?'bad':'ok'}">${pend}</b></div>
+  </div>
+  <div class="card">
+    <h2 style="margin-bottom:10px">Upcoming / Active Today</h2>
+    ${upcoming.length ? upcoming.map(a=>{
+      const cl = cOf(a.clientId);
+      const sv = sOf(a.serviceId);
+      const st = stOf(a.staffId);
+      const srcTag = a.source ? ` · <span class="bd sV" style="padding:1px 7px;font-size:11px">${esc(a.source)}</span>` : '';
+      return `<div class="row">
+        <div class="nm" data-a="openClient" data-id="${a.clientId}">
+          <b>${esc(cl?cl.name:'Client')}</b>
+          <div class="mut sm">${esc(a.time)} · ${esc(sv?sv.name:'Service')} · ${esc(st?st.name:'Any')}${srcTag}</div>
+        </div>
+        <span class="bd ${STATUS_CLS[a.status]||'sN'}">${esc(STATUS[a.status]||a.status)}</span>
+      </div>`;
+    }).join('') : '<div class="emp">No active appointments for today.</div>'}
+  </div>`;
+}
+
+function Appointments(){
+  const q = S.q.toLowerCase();
+  const list = dayAppts(S.d).filter(a=>{
+    const cl = cOf(a.clientId);
+    const sv = sOf(a.serviceId);
+    return (!S.f || a.status===S.f) && (!q || (cl&&cl.name.toLowerCase().includes(q)) || (cl&&(cl.phone||'').includes(q)) || (cl&&(cl.email||'').toLowerCase().includes(q)) || (sv&&sv.name.toLowerCase().includes(q)));
+  });
+
+  const activeSlots = dayAppts(S.d).filter(isActiveSlotAppt);
+  const overlaps = getOverlappingGroups(S.d);
+  const overviewCards = WORK_SLOTS.map(t=>{
+    const hits = activeSlots.filter(a=>a.time===t);
+    if(hits.length >= 2){
+      const names = hits.map(h=>{ const cl=cOf(h.clientId); return cl?cl.name.split(' ')[0]:'Client'; }).join(' + ');
+      return `<div class="slot-btn overlap" style="cursor:default">
+        <b>${esc(t)}</b>
+        <span class="st-lbl">${hits.length} Booked (Overlap!)</span>
+        <span class="mut sm" style="font-size:11px">${esc(names)}</span>
+      </div>`;
+    }
+    if(hits.length === 1){
+      const hit = hits[0];
+      const cl = cOf(hit.clientId);
+      const st = stOf(hit.staffId);
+      return `<div class="slot-btn busy" style="cursor:default">
+        <b>${esc(t)}</b>
+        <span class="st-lbl">Booked · ${esc(cl?cl.name.split(' ')[0]:'Client')}</span>
+        <span class="mut sm" style="font-size:11px">${esc(st?st.name:'Any staff')}</span>
+      </div>`;
+    }
+    return `<div class="slot-btn free" style="cursor:default">
+      <b>${esc(t)}</b>
+      <span class="st-lbl">Free</span>
+      <span class="mut sm" style="font-size:11px">Available</span>
+    </div>`;
+  }).join('');
+
+  const overlapBannerHtml = overlaps.length ? `<div class="conflict-warn" style="margin-bottom:12px">
+    <div>Same-Day Time Overlap Detected on ${esc(fd(S.d))}: ${overlaps.length} slot(s) have 2+ clients. Change time for one of them:</div>
+    ${overlaps.map(([timeSlot, grp])=>`<div style="display:grid;gap:5px;margin-top:4px">
+      <div class="sm"><b>At ${esc(timeSlot)} (${grp.length} clients):</b></div>
+      ${grp.map(ap=>{
+        const cl = cOf(ap.clientId);
+        const sv = sOf(ap.serviceId);
+        return `<div class="overlap-item">
+          <span><b>${esc(cl?cl.name:'Client')}</b> · ${esc(sv?sv.name:'Service')} (${esc(STATUS[ap.status]||ap.status)})</span>
+          <button type="button" class="b sm pri" data-a="changeApptTime" data-id="${ap.id}" data-date="${esc(S.d)}">Change Time</button>
+        </div>`;
+      }).join('')}
+    </div>`).join('')}
+  </div>` : '';
+
+  return `<div class="ph">
+    <h1>${esc(T('appointments'))}</h1>
+    <div class="bar" style="margin:0">
+      <input type="date" data-f="d" value="${S.d}" aria-label="Appointment date">
+      <button class="b pri sm" data-a="bookAppt">${esc(T('bookAppt'))}</button>
+    </div>
+  </div>
+  ${overlapBannerHtml}
+  <div class="card" style="margin-bottom:12px">
+    <div class="slot-head" style="margin-bottom:8px">
+      <b>Daily Slot Chart — ${esc(fd(S.d))}</b>
+      <span class="mut sm">${activeSlots.length} active slot(s) booked${overlaps.length ? ` · ${overlaps.length} overlap(s)` : ''}</span>
+    </div>
+    <div class="slot-grid">${overviewCards}</div>
+  </div>
+  <div class="bar">
+    <select data-f="f" aria-label="Filter status">
+      <option value="">All statuses</option>
+      ${Object.entries(STATUS).map(([k,v])=>`<option value="${k}" ${S.f===k?'selected':''}>${esc(v)}</option>`).join('')}
+    </select>
+  </div>
+  <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+    <span class="bd sV">Booked ${dayAppts(S.d).filter(a=>a.status==='B').length}</span>
+    <span class="bd sL">Arrived / Progress ${dayAppts(S.d).filter(a=>['A','P'].includes(a.status)).length}</span>
+    <span class="bd sP">Completed ${dayAppts(S.d).filter(a=>a.status==='C').length}</span>
+    <span class="bd sA">Cancelled / No-show ${dayAppts(S.d).filter(a=>['X','N'].includes(a.status)).length}</span>
+  </div>
+  ${list.length ? list.map(a=>{
+    const cl = cOf(a.clientId);
+    const sv = sOf(a.serviceId);
+    const st = stOf(a.staffId);
+    const srcTxt = a.source ? ` · ${esc(a.source)}` : '';
+    const sameTimeCount = isActiveSlotAppt(a) ? activeSlots.filter(x=>x.time===a.time).length : 0;
+    const dupBadge = sameTimeCount >= 2 ? ` · <span class="bd sA" style="padding:1px 7px;font-size:11px">Same Time (${sameTimeCount})</span>` : '';
+    return `<div class="row">
+      <div class="nm" data-a="openClient" data-id="${a.clientId}">
+        <b>${esc(cl?cl.name:'—')}</b>
+        <div class="mut sm">${esc(a.time)} · ${esc(sv?sv.name:'Service')} (${fmtRs(a.price||(sv&&sv.price)||0)}) · Staff: ${esc(st?st.name:'Any')}${srcTxt}${dupBadge}</div>
+      </div>
+      <button type="button" class="b sm" data-a="changeApptTime" data-id="${a.id}" data-date="${esc(S.d)}">Change Time</button>
+      <div class="seg">
+        ${['B','A','P','C','N','X'].map(k=>`<button class="${a.status===k?'o'+(k==='B'?'V':k==='A'||k==='P'?'L':k==='C'?'P':'A'):''}" data-a="setStatus" data-id="${a.id}" data-v="${k}" title="${esc(STATUS[k])}">${k}</button>`).join('')}
+      </div>
+    </div>`;
+  }).join('') : '<div class="emp">No appointments match on this date. Book one!</div>'}`;
+}
+
+function Clients(){
+  const q = S.q.toLowerCase();
+  const list = db.clients.filter(c => !q || c.name.toLowerCase().includes(q) || (c.phone||'').includes(q) || (c.email||'').toLowerCase().includes(q));
+  return `<div class="ph">
+    <h1>${esc(T('clients'))} <span class="mut sm">${list.length}</span></h1>
+    <button class="b pri sm" data-a="addClient">${esc(T('addClient'))}</button>
+  </div>
+  <div class="bar"><input id="q" placeholder="${esc(T('searchClient'))}" value="${esc(S.q)}"></div>
+  <div class="card tw" style="padding:0">
+    ${list.length ? `<table><tr><th>Name</th><th>Phone</th><th>Email</th><th>Notes</th><th style="text-align:end">Actions</th></tr>
+    ${list.map(c=>`<tr class="cl" data-a="openClient" data-id="${c.id}">
+      <td><span style="display:inline-flex;align-items:center;gap:8px">${avOf(c.name,c.photo)}<b>${esc(c.name)}</b></span></td>
+      <td>${esc(c.phone||'–')}</td>
+      <td class="sm">${esc(c.email||'–')}</td>
+      <td class="mut sm">${esc((c.notes||'').slice(0,40))}</td>
+      <td style="display:flex;gap:6px;justify-content:flex-end"><button class="b sm" data-a="editClient" data-id="${c.id}">Edit</button><button class="b sm del" data-a="delClient" data-id="${c.id}">Remove</button></td>
+    </tr>`).join('')}</table>` : '<div class="emp">No clients yet. Add your first client.</div>'}
+  </div>`;
+}
+
+function clientDrawerHtml(id){
+  const c = cOf(id);
+  if(!c) return '';
+  const history = [];
+  Object.entries(db.appts||{}).sort((a,b)=>b[0].localeCompare(a[0])).forEach(([d, arr])=>{
+    (arr||[]).forEach(a=>{
+      if(a.clientId===id){
+        const sv = sOf(a.serviceId);
+        history.push({d, time:a.time, status:a.status, svc:sv?sv.name:'Service', price:Number(a.price||(sv&&sv.price)||0)});
+      }
+    });
+  });
+  const totalSpent = history.filter(x=>x.status==='C').reduce((sum,x)=>sum+x.price, 0);
+  return `<div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+    <div style="display:flex;align-items:center;gap:10px">${avOf(c.name,c.photo,'lg-av')}<div><h2>${esc(c.name)}</h2><div class="mut sm">${esc(c.phone||'No phone')}${c.email?` · ${esc(c.email)}`:''}</div></div></div>
+    <button class="b sm" data-a="drx">Close</button>
+  </div>
+  <div class="card"><span class="mut sm">Completed Spend</span><b class="ok" style="display:block;font-size:22px">${fmtRs(totalSpent)}</b><div class="mut sm">${history.length} total appointments</div></div>
+  <div class="card sm"><b>Notes &amp; Preferences</b><div class="mut" style="margin-top:4px">${esc(c.notes||'No notes saved.')}</div></div>
+  <div class="card"><h2 style="margin-bottom:8px">Appointment History</h2>
+    ${history.length ? history.slice(0,15).map(h=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--line)" class="sm">
+      <div><b>${esc(h.svc)}</b> <span class="mut">(${fd(h.d)} · ${esc(h.time)})</span></div>
+      <span class="bd ${STATUS_CLS[h.status]||'sN'}">${esc(STATUS[h.status]||h.status)}</span>
+    </div>`).join('') : '<div class="mut sm">No appointments yet.</div>'}
+  </div>`;
+}
+
+function Services(){
+  return `<div class="ph">
+    <h1>${esc(T('services'))}</h1>
+    <button class="b pri sm" data-a="addService">${esc(T('addService'))}</button>
+  </div>
+  <div class="card tw" style="padding:0">
+    ${db.services.length ? `<table><tr><th>Service</th><th>Category</th><th>Duration</th><th>Price</th><th></th></tr>
+    ${db.services.map(s=>`<tr>
+      <td><b>${esc(s.name)}</b></td>
+      <td>${esc(s.cat||'General')}</td>
+      <td>${esc(s.mins||30)} min</td>
+      <td><b>${fmtRs(s.price)}</b></td>
+      <td><button class="b sm del" data-a="delService" data-id="${s.id}">Delete</button></td>
+    </tr>`).join('')}</table>` : '<div class="emp">No services. Add Hair Cut, Facial, Bridal Makeup etc.</div>'}
+  </div>`;
+}
+
+function StaffView(){
+  const canManage = S.u && ['owner','admin'].includes(S.u.role);
+  return `<div class="ph">
+    <h1>${esc(T('staff'))}</h1>
+    ${canManage ? `<button class="b pri sm" data-a="addStaff">${esc(T('addStaff'))}</button>` : ''}
+  </div>
+  <div class="card tw" style="padding:0">
+    ${db.staff.length ? `<table><tr><th>Name</th><th>Phone</th><th>Skills</th><th>Commission</th><th></th></tr>
+    ${db.staff.map(s=>`<tr>
+      <td><span style="display:inline-flex;align-items:center;gap:8px">${avOf(s.name,s.photo)}<b>${esc(s.name)}</b></span></td>
+      <td>${esc(s.phone||'–')}</td>
+      <td class="sm">${esc(s.skills||'–')}</td>
+      <td>${esc(s.comm||0)}%</td>
+      <td style="display:flex;gap:6px;justify-content:flex-end">
+        ${canManage ? `<button class="b sm" data-a="editStaff" data-id="${s.id}">Edit</button>` : ''}
+        <button class="b sm del" data-a="delStaff" data-id="${s.id}">Remove</button>
+      </td>
+    </tr>`).join('')}</table>` : '<div class="emp">No staff added yet.</div>'}
+  </div>`;
+}
+
+function Billing(){
+  const bills = Object.entries(db.bills||{}).map(([id,b])=>({id,...b})).sort((a,b)=>b.date.localeCompare(a.date));
+  return `<div class="ph"><h1>${esc(T('billing'))}</h1></div>
+  <div class="card tw" style="padding:0">
+    ${bills.length ? `<table><tr><th>Date</th><th>Client</th><th>Service</th><th>Amount</th><th>Status</th><th></th></tr>
+    ${bills.slice(0,50).map(b=>{
+      const cl = cOf(b.clientId);
+      return `<tr>
+        <td>${fd(b.date)}</td>
+        <td>${esc(cl?cl.name:'—')}</td>
+        <td>${esc(b.serviceName||'—')}</td>
+        <td><b>${fmtRs(b.amount)}</b></td>
+        <td><span class="bd ${b.status==='Paid'?'sP':'sA'}">${esc(b.status)}</span></td>
+        <td>${b.status!=='Paid'?`<button class="b sm pri" data-a="markPaid" data-id="${b.id}">Mark Paid</button>`:''}</td>
+      </tr>`;
+    }).join('')}</table>` : '<div class="emp">No bills yet. Complete appointments to generate bills.</div>'}
+  </div>`;
+}
+
+function Reports(){
+  const days = [];
+  for(let i=6;i>=0;i--){
+    const d = new Date(); d.setDate(d.getDate()-i);
+    const ds = iso(d);
+    days.push({d:ds, rev:revenueOf(ds), cnt:dayAppts(ds).filter(a=>a.status==='C').length});
+  }
+  const totalRev = days.reduce((s,x)=>s+x.rev,0);
+  const logs = (db.audit||[]).slice(-10).reverse();
+  return `<div class="ph"><h1>${esc(T('reports'))}</h1><div class="bar noprint" style="margin:0"><button class="b" data-a="csvBills">Export Bills CSV</button><button class="b pri" data-a="print">Print</button></div></div>
+  <div class="kp">
+    <div class="card"><span class="mut">Last 7 days Revenue</span><b class="ok">${fmtRs(totalRev)}</b></div>
+    <div class="card"><span class="mut">Completed Services</span><b>${days.reduce((s,x)=>s+x.cnt,0)}</b></div>
+  </div>
+  <div class="card" style="margin-bottom:14px">
+    <h2 style="margin-bottom:10px">Daily Breakdown</h2>
+    ${days.map(x=>`<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line)">
+      <span>${fd(x.d)}</span>
+      <span><b>${x.cnt}</b> services · <b class="ok">${fmtRs(x.rev)}</b></span>
+    </div>`).join('')}
+  </div>
+  <div class="card"><h2 style="margin-bottom:8px">Recent Activity Log</h2>
+    ${logs.length ? logs.map(l=>`<div class="sm" style="display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px solid var(--line)"><span><b>${esc(l.action)}</b> — ${esc(l.detail)} <span class="mut">by ${esc(l.by)}</span></span><span class="mut">${esc((l.at||'').slice(0,16).replace('T',' '))}</span></div>`).join('') : '<div class="emp">No activity logs yet.</div>'}
+  </div>`;
+}
+
+function renderLogoBoxHtml(logoCur, orgName){
+  return `${logoCur ? `<img class="org-img" style="width:44px;height:44px" src="${logoCur}" alt="Logo">` : `<div class="av" style="width:44px;height:44px;font-size:16px">${esc(((orgName||DEFAULT_ORG))[0].toUpperCase())}</div>`}
+    <div style="display:grid;gap:6px">
+      <b class="sm">Salon Logo (Owner &amp; Admin can change)</b>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <label class="b sm" style="cursor:pointer;margin:0">${logoCur ? 'Change Logo' : 'Upload Logo'}<input type="file" id="orgLogoInput" accept="image/*" style="display:none"></label>
+        ${logoCur ? `<button type="button" class="b sm" data-a="clearOrgLogo">Remove</button>` : ''}
+      </div>
+    </div>`;
+}
+
+function ownerTrialManagerHtml(){
+  ensureTrialMaps();
+  sweepExpiredTrials(false);
+  const ipEntries = Object.entries(owner.trialIps || {});
+  const clientEntries = Object.entries(owner.licensedClients || {}).filter(([,v])=>!!v);
+
+  const ipRows = ipEntries.length ? ipEntries.map(([ipKey])=>{
+    const info = evaluateIpTrial(ipKey);
+    const badgeCls = info.status==='active' ? 'sP' : 'sA';
+    const expLabel = info.expiresAt ? new Date(info.expiresAt).toLocaleString('en-GB', {day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit'}) : '-';
+    const statusTxt = info.status==='removed' ? 'Removed' : (info.status==='expired' ? 'Auto-Expired' : `Active (${info.remainingDays}d / ${info.remainingHours}h left)`);
+    return `<tr>
+      <td><b>${esc(ipKey)}</b></td>
+      <td><span class="bd ${badgeCls}">${esc(statusTxt)}</span></td>
+      <td class="sm">${info.devices.length||1} device(s) · ${(info.logins||[]).length} login(s) · Exp: ${esc(expLabel)}</td>
+      <td style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end">
+        <button type="button" class="b sm pri" data-a="extendTrialIp" data-ip="${esc(ipKey)}">Extend / Reset Trial</button>
+        <button type="button" class="b sm del" data-a="removeTrialIp" data-ip="${esc(ipKey)}">Remove Trial</button>
+      </td>
+    </tr>`;
+  }).join('') : `<tr><td colspan="4" class="mut sm">No IP trials recorded yet (Current IP: <b>${esc(currentIp)}</b>).</td></tr>`;
+
+  const clientRows = clientEntries.length ? clientEntries.map(([key, valObj])=>{
+    const lbl = typeof valObj === 'object' ? (valObj.label || valObj.name || key) : String(valObj);
+    return `<tr>
+      <td><b>${esc(key)}</b></td>
+      <td class="sm">${esc(lbl)}</td>
+      <td style="text-align:end"><button type="button" class="b sm del" data-a="revokeClientLicense" data-key="${esc(key)}">Revoke</button></td>
+    </tr>`;
+  }).join('') : `<tr><td colspan="3" class="mut sm">No paid client accounts in <code>clients</code> map yet.</td></tr>`;
+
+  return `<div class="card" style="margin-bottom:14px;display:grid;gap:10px">
+    <h2>IP Trial, Auto-Expiry &amp; Licensed Clients</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px">
+      <label class="sm" style="display:grid;gap:4px;color:var(--mut)">Default Trial Days (7 default)
+        <input type="number" id="setTrialDays" min="1" max="365" value="${esc(getTrialDurationDays())}">
+      </label>
+
+    </div>
+    <div class="tw" style="border:1px solid var(--line);border-radius:12px">
+      <table>
+        <tr><th>IP Address</th><th>Status</th><th>Usage</th><th>Actions</th></tr>
+        ${ipRows}
+      </table>
+    </div>
+    <div class="tw" style="border:1px solid var(--line);border-radius:12px">
+      <table>
+        <tr><th>Licensed Client Key / Email</th><th>Label</th><th></th></tr>
+        ${clientRows}
+      </table>
+    </div>
+  </div>`;
+}
+
+function Settings(){
+  const isOwner = S.u && S.u.role==='owner';
+  const selAcc = S.tempAccent || db.accent || 'pink';
+  const logoCur = S.tempLogo !== undefined ? S.tempLogo : (db.orgLogo || '');
+  return `<div class="ph"><h1>${esc(T('settings'))}</h1><span class="mut sm">App <b>v${esc(APP_VERSION)}</b></span></div>
+  ${isOwner ? `
+    <div class="card kill-box" style="margin-bottom:14px">
+      <h2 style="color:var(--A)">Owner Kill Switch (Global Portal Lock)</h2>
+      <p class="mut sm">Turn ON to immediately pause the salon portal for non-owner users across devices.</p>
+      <label class="chk"><input type="checkbox" id="setGlobalLock" ${syncKillSwitchFlags()?'checked':''}> Pause entire portal (Kill Switch)</label>
+      <label>Pause screen message<input id="setGlobalLockMsg" value="${esc(owner.globalLockMsg||db.globalLockMsg||DEFAULT_LOCK_MSG)}" placeholder="${esc(DEFAULT_LOCK_MSG)}"></label>
+      <hr style="border:0;border-top:1px solid rgba(225,29,72,.22);margin:2px 0">
+      <h2>Owner Credentials</h2>
+      <label>Owner Name<input id="setOName" value="${esc(owner.ownerName||DEFAULT_OWNER_NAME)}"></label>
+      <label>Owner Email<input id="setOEmail" type="email" value="${esc(owner.ownerEmail||DEFAULT_OWNER_EMAIL)}"></label>
+      <label>Owner Password<input id="setOPw" type="text" value="${esc(owner.ownerPw||DEFAULT_OWNER_PW)}"></label>
+    </div>
+    ${ownerTrialManagerHtml()}
+  ` : ''}
+  <div class="card fl">
+    <h2>Branding &amp; About Article</h2>
+    <div class="prof-bar" id="orgLogoPreview">${renderLogoBoxHtml(logoCur, db.orgName)}</div>
+    <label>Salon Name<input id="setOrg" value="${esc(db.orgName)}"></label>
+    <label>Tagline<input id="setTag" value="${esc(db.orgTagline)}"></label>
+    <label>About Heading<input id="setAboutTitle" value="${esc(db.aboutTitle||DEFAULT_ABOUT_TITLE)}"></label>
+    <label>About Paragraph 1<textarea id="setAboutP1">${esc(db.aboutP1||DEFAULT_ABOUT_P1)}</textarea></label>
+    <label>About Paragraph 2<textarea id="setAboutP2">${esc(db.aboutP2||DEFAULT_ABOUT_P2)}</textarea></label>
+    <div><span class="mut sm">Theme accent</span>
+      <div class="swatches">${Object.entries(ACCENTS).map(([k,v])=>`<button type="button" class="sw ${selAcc===k?'on':''}" data-a="pickAcc" data-v="${k}" style="background:${v.pri}" title="${esc(v.label)}" aria-label="${esc(v.label)}"></button>`).join('')}</div>
+    </div>
+    <hr style="border:0;border-top:1px solid var(--line);margin:4px 0">
+    <h2>Manager Account</h2>
+    <label>Admin Name<input id="setAName" value="${esc(db.admin.name)}"></label>
+    <label>Admin Email<input id="setAEmail" value="${esc(db.admin.email)}"></label>
+    <label>Admin Password<input id="setAPw" type="text" value="${esc(db.admin.pw)}"></label>
+    <div class="bar">
+      <button class="b pri" data-a="saveSettings">${esc(T('save'))}</button>
+      <button class="b" data-a="backupJson">${esc(T('exportBak'))}</button>
+      <button class="b" data-a="restoreJson">${esc(T('restoreBak'))}</button>
+      <button class="b" data-a="loadDemo">Load Demo Data</button>
+      <button class="b del" data-a="clearData">Clear All Data</button>
+    </div>
+  </div>`;
+}
+
+function renderProfilePreviewHtml(name, photo, role){
+  return `${avOf(name, photo, 'lg-av')}
+    <div style="display:grid;gap:6px">
+      <div><b>${esc(name)}</b> <span class="role">${esc(role)}</span></div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <label class="b sm" style="cursor:pointer;margin:0">${photo ? 'Change Photo' : 'Upload Photo'}<input type="file" id="profPhotoInput" accept="image/*" style="display:none"></label>
+        ${photo ? `<button type="button" class="b sm" data-a="clearMyPhoto">Remove photo</button>` : ''}
+      </div>
+    </div>`;
+}
+
+function bindProfilePhotoInput(curName){
+  const fin = $('#profPhotoInput');
+  if(!fin) return;
+  fin.addEventListener('change', ()=>{
+    if(!fin.files || !fin.files[0]) return;
+    readPhotoFile(fin.files[0], url=>{
+      S.tempPhoto = url;
+      const nm = val('profNameInput').trim() || curName;
+      const box = $('#myProfPreview');
+      if(box){
+        box.innerHTML = renderProfilePreviewHtml(nm, S.tempPhoto, S.u.role);
+        bindProfilePhotoInput(curName);
+      }
+    });
+  });
+}
+
+function openMyProfileModal(){
+  if(!S.u) return;
+  const cur = getCurrentProfile();
+  S.tempPhoto = cur.photo || '';
+  modal(T('editProf'), `
+    <p class="mut sm">Update your own display name and profile photo.</p>
+    <div class="fl">
+      <div class="prof-bar" id="myProfPreview">${renderProfilePreviewHtml(cur.name, S.tempPhoto, S.u.role)}</div>
+      <label>Display Name<input id="profNameInput" value="${esc(cur.name)}" placeholder="Enter your name"></label>
+    </div>
+  `, T('save'), async ()=>{
+    const newName = val('profNameInput').trim();
+    if(!newName){ toast('Name required'); return false; }
+    const newPhoto = S.tempPhoto || '';
+    if(S.u.role==='owner'){
+      owner.ownerName = newName;
+      owner.ownerPhoto = newPhoto;
+    } else if(S.u.role==='admin'){
+      db.admin = {...db.admin, name: newName, photo: newPhoto};
+    } else if(S.u.role==='staff'){
+      const st = findStaffForUser(S.u);
+      if(st){
+        st.name = newName;
+        st.photo = newPhoto;
+        S.u = {...S.u, ref: st.id};
+      }
+    }
+    S.u = {...S.u, name: newName};
+    safeSet(SESSION_KEY, JSON.stringify(S.u));
+    addAudit('Profile Updated', `${S.u.role}: ${newName}`);
+    persist();
+    render(false);
+    toast('Profile updated');
+  });
+  bindProfilePhotoInput(cur.name);
+}
+
+function bindLogoFileInput(){
+  const lin = $('#orgLogoInput');
+  if(!lin) return;
+  lin.addEventListener('change', ()=>{
+    if(!lin.files || !lin.files[0]) return;
+    readPhotoFile(lin.files[0], url=>{
+      S.tempLogo = url;
+      const box = $('#orgLogoPreview');
+      if(box){
+        const orgNm = val('setOrg').trim() || db.orgName;
+        box.innerHTML = renderLogoBoxHtml(S.tempLogo, orgNm);
+        bindLogoFileInput();
+      }
+    }, 180);
+  });
+}
+
+function render(anim=true){
+  enforceRemoteLock();
+  document.title = (db.orgName||DEFAULT_ORG) + ' — Salon';
+  $('#app').innerHTML = S.u ? Shell() : PublicStorefront();
+  if(S.authModalOpen && !$('#m').innerHTML) openStaffOwnerModal();
+  if(S.u && S.v==='settings') bindLogoFileInput();
+  if(S.u && S.drawerId && cOf(S.drawerId)){
+    $('#dr').innerHTML = `<aside class="dr" role="dialog" aria-label="Client details">${clientDrawerHtml(S.drawerId)}</aside>`;
+  } else if(!S.drawerId){
+    $('#dr').innerHTML = '';
+  }
+}
+
+document.addEventListener('click', async e=>{
+  if(S.mobMenuOpen && !e.target.closest('.mob-dots-wrap') && !e.target.closest('.mob-dots-menu')){
+    S.mobMenuOpen = false;
+    render(false);
+  }
+  const el = e.target.closest('[data-a]');
+  if(!el) return;
+  const a = el.dataset.a, id = el.dataset.id, v = el.dataset.v;
+
+  if(a==='mobDots'){ e.stopPropagation(); S.mobMenuOpen = !S.mobMenuOpen; render(false); return; }
+  if(a==='mobDotsClose'){ e.stopPropagation(); S.mobMenuOpen = false; render(false); return; }
+  if(a!=='mobDots' && S.mobMenuOpen) S.mobMenuOpen = false;
+
+  if(a==='mx'){ if(e.target===el || el.classList.contains('b')) closeM(); }
+  else if(a==='mok'){ if(modal.cb && await modal.cb()===false) return; closeM(); }
+  else if(a==='showTrialInfo'){ openTrialFinishedPopup(evaluateIpTrial(currentIp)); }
+  else if(a==='extendTrialIp'){
+    if(!S.u || S.u.role!=='owner'){ toast('Only Owner can extend trial'); return; }
+    const targetIp = el.dataset.ip || currentIp;
+    const days = normalizeTrialDays(val('setTrialDays') || owner.trialDays || DEFAULT_TRIAL_DAYS);
+    const now = Date.now();
+    const prev = owner.trialIps[targetIp] || {ip: targetIp, devices: [], logins: []};
+    owner.trialIps[targetIp] = {
+      ...prev,
+      ip: targetIp,
+      days,
+      startedAt: now,
+      expiresAt: now + days * 24 * 60 * 60 * 1000,
+      status: 'active',
+      removed: false
+    };
+    S.trialPopupShownFor = '';
+    addAudit('Trial Extended', `IP ${targetIp} extended for ${days} days`);
+    persist();
+    render(false);
+    toast(`Trial extended (${days}d) for ${targetIp}`);
+  }
+  else if(a==='removeTrialIp'){
+    if(!S.u || S.u.role!=='owner'){ toast('Only Owner can remove trial'); return; }
+    const targetIp = el.dataset.ip || currentIp;
+    const prev = owner.trialIps[targetIp] || {ip: targetIp, devices: [], logins: []};
+    owner.trialIps[targetIp] = {
+      ...prev,
+      ip: targetIp,
+      status: 'removed',
+      removed: true,
+      expiresAt: Date.now() - 1000
+    };
+    addAudit('Trial Removed', `IP ${targetIp} trial removed & active trial cutoff triggered`);
+    persist();
+    render(false);
+    toast(`Trial removed for ${targetIp}`);
+  }
+  else if(a==='revokeClientLicense'){
+    if(!S.u || S.u.role!=='owner'){ toast('Only Owner can revoke client account'); return; }
+    const k = el.dataset.key;
+    if(k && owner.licensedClients[k]){
+      delete owner.licensedClients[k];
+      addAudit('Client Revoked', k);
+      persist();
+      render(false);
+      toast('Client account revoked');
+    }
+  }
+  else if(a==='pickSlot'){
+    const targetId = el.dataset.target || 'apTime';
+    const inp = $('#'+targetId);
+    if(inp){
+      inp.value = v;
+      if(targetId === 'apTime') refreshBookingSlotChart('apDate', 'apTime', 'apStaff', 'apSlotBox');
+      else if(targetId === 'cbTime') refreshBookingSlotChart('cbDate', 'cbTime', '', 'cbSlotBox');
+      else if(targetId === 'rsTime'){
+        const curApId = ($('#rsSlotBox') && $('#rsSlotBox').dataset.apptId) || '';
+        refreshBookingSlotChart('rsDate', 'rsTime', '', 'rsSlotBox', curApId);
+      }
+    }
+  }
+  else if(a==='changeApptTime'){
+    openChangeTimeModal(id, el.dataset.date || S.d || TODAY);
+  }
+  else if(a==='openAuthModal'){ openStaffOwnerModal(); }
+  else if(a==='clientBook'){ openClientSelfBooking(id || ''); }
+  else if(a==='myProfile'){ openMyProfileModal(); }
+  else if(a==='openClient'){ openDr(id); }
+  else if(a==='drx'){ closeDr(); }
+  else if(a==='clearOrgLogo'){
+    S.tempLogo = '';
+    const box = $('#orgLogoPreview');
+    if(box){
+      const orgNm = val('setOrg').trim() || db.orgName;
+      box.innerHTML = renderLogoBoxHtml('', orgNm);
+      bindLogoFileInput();
+    }
+  }
+  else if(a==='clearMyPhoto'){
+    S.tempPhoto = '';
+    const curName = getCurrentProfile().name;
+    const nm = val('profNameInput').trim() || curName;
+    const box = $('#myProfPreview');
+    if(box){
+      box.innerHTML = renderProfilePreviewHtml(nm, '', S.u.role);
+      bindProfilePhotoInput(curName);
+    }
+  }
+  else if(a==='pickAcc'){ S.tempAccent = v; db.accent = v; applyAccent(); render(false); }
+  else if(a==='logout'){ S.u=null; safeRemove(SESSION_KEY); closeDr(); S.q=''; S.f=''; render(); }
+  else if(a==='nav'){ S.v=v; S.f=''; if(v==='settings'){ S.tempAccent=db.accent; S.tempLogo=undefined; } render(); }
+  else if(a==='syncNow'){ await loadCloud(); toast('Synced'); }
+  else if(a==='theme'){
+    const nx = document.documentElement.dataset.theme==='dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = nx;
+    safeSet(THEME_KEY, nx);
+    toast(nx==='dark'?'Dark mode':'Light mode');
+  }
+  else if(a==='bookAppt'){
+    if(!db.clients.length){ toast('Add clients first'); return; }
+    if(!db.services.length){ toast('Add services first'); return; }
+    modal(T('bookAppt'), `
+      <div class="fl">
+        <label>Date<input type="date" id="apDate" value="${S.d}"></label>
+        <label>Time<input type="time" id="apTime" value="11:00"></label>
+        <label>Client<select id="apClient">${db.clients.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('')}</select></label>
+        <label>Service<select id="apService">${db.services.map(s=>`<option value="${s.id}">${esc(s.name)} (${fmtRs(s.price)})</option>`).join('')}</select></label>
+        <label>Staff<select id="apStaff"><option value="">Any / Unassigned</option>${db.staff.map(s=>`<option value="${s.id}">${esc(s.name)}</option>`).join('')}</select></label>
+        <div id="apSlotBox">${slotChartHtml(S.d, '11:00', '', 'apTime')}</div>
+      </div>
+    `, 'Book', async ()=>{
+      const date = val('apDate')||TODAY;
+      const time = val('apTime')||'11:00';
+      const clientId = val('apClient');
+      const serviceId = val('apService');
+      const staffId = val('apStaff');
+      const svc = sOf(serviceId);
+      const cl = cOf(clientId);
+      const appt = {
+        id: 'a'+Date.now(),
+        clientId, serviceId, staffId,
+        time, status:'B',
+        price: svc ? svc.price : 0,
+        createdAt: new Date().toISOString()
+      };
+      db.appts[date] = db.appts[date]||[];
+      db.appts[date].push(appt);
+      addAudit('Booked', `${cl?cl.name:'Client'} — ${svc?svc.name:'Service'} (${date} ${time})`);
+      persist();
+      S.d = date;
+      render();
+      toast('Appointment booked');
+    });
+  }
+  else if(a==='setStatus'){
+    const list = db.appts[S.d]||[];
+    const ap = list.find(x=>x.id===id);
+    if(!ap) return;
+    ap.status = v;
+    const cl = cOf(ap.clientId);
+    const sv = sOf(ap.serviceId);
+    if(v==='C'){
+      db.bills = db.bills||{};
+      const existingBill = Object.values(db.bills).find(b=>b.apptId===ap.id);
+      if(!existingBill){
+        const billId = 'b'+Date.now();
+        db.bills[billId] = {
+          clientId: ap.clientId,
+          serviceName: sv?sv.name:'Service',
+          amount: ap.price||(sv&&sv.price)||0,
+          date: S.d,
+          status: 'Pending',
+          apptId: ap.id
+        };
+      }
+    }
+    addAudit('Status '+v, `${cl?cl.name:'Client'} (${sv?sv.name:'Service'} · ${STATUS[v]||v})`);
+    persist();
+    render();
+    toast('Status: ' + (STATUS[v]||v));
+  }
+  else if(a==='addClient'){
+    modal(T('addClient'), `
+      <div class="fl">
+        <label>Full Name<input id="cName" placeholder="e.g. Ayesha Khan"></label>
+        <label>Phone / WhatsApp<input id="cPhone" placeholder="03001234567"></label>
+        <label>Email<input id="cEmail" type="email" placeholder="ayesha@example.com"></label>
+        <label>Gender<select id="cGender"><option>Female</option><option>Male</option><option>Other</option></select></label>
+        <label>Notes<textarea id="cNotes" placeholder="Preferences, allergies..."></textarea></label>
+      </div>
+    `, 'Add', async ()=>{
+      const name = val('cName').trim();
+      if(!name){ toast('Name required'); return false; }
+      db.clients.push({
+        id:'c'+Date.now(), name,
+        phone: val('cPhone').trim(),
+        email: val('cEmail').trim().toLowerCase(),
+        gender: val('cGender'),
+        notes: val('cNotes').trim(),
+        photo:''
+      });
+      addAudit('Client Added', name);
+      persist(); render(); toast('Client added');
+    });
+  }
+  else if(a==='editClient'){
+    e.stopPropagation();
+    const cl = cOf(id);
+    if(!cl){ toast('Client not found'); return; }
+    modal('Edit Client', `
+      <div class="fl">
+        <label>Full Name<input id="ecName" value="${esc(cl.name)}" placeholder="Client full name"></label>
+        <label>Phone / WhatsApp<input id="ecPhone" value="${esc(cl.phone||'')}" placeholder="03001234567"></label>
+        <label>Email<input id="ecEmail" type="email" value="${esc(cl.email||'')}" placeholder="client@example.com"></label>
+        <label>Gender<select id="ecGender"><option ${cl.gender==='Female'?'selected':''}>Female</option><option ${cl.gender==='Male'?'selected':''}>Male</option><option ${cl.gender==='Other'?'selected':''}>Other</option></select></label>
+        <label>Notes<textarea id="ecNotes" placeholder="Preferences, allergies...">${esc(cl.notes||'')}</textarea></label>
+      </div>
+    `, T('save'), async ()=>{
+      const name = val('ecName').trim();
+      if(!name){ toast('Name required'); return false; }
+      const oldName = cl.name;
+      cl.name = name;
+      cl.phone = val('ecPhone').trim();
+      cl.email = val('ecEmail').trim().toLowerCase();
+      cl.gender = val('ecGender') || 'Female';
+      cl.notes = val('ecNotes').trim();
+      addAudit('Client Updated', `${oldName} → ${name}`);
+      persist();
+      if(S.drawerId===id) openDr(id);
+      render();
+      toast('Client updated');
+    });
+  }
+  else if(a==='delClient'){
+    e.stopPropagation();
+    const cl = cOf(id);
+    if(!cl) return;
+    modal('Remove Client?', `<p class="mut">Remove <b>${esc(cl.name)}</b>?</p>`, 'Remove', async ()=>{
+      db.clients = db.clients.filter(c=>c.id!==id);
+      if(S.drawerId===id) closeDr();
+      addAudit('Client Removed', cl.name);
+      persist(); render(); toast('Client removed');
+    });
+  }
+  else if(a==='addService'){
+    modal(T('addService'), `
+      <div class="fl">
+        <label>Service Name<input id="sName" placeholder="e.g. Bridal Makeup"></label>
+        <label>Category<input id="sCat" placeholder="Hair / Facial / Makeup / Bridal"></label>
+        <label>Duration (minutes)<input id="sMins" type="number" value="45"></label>
+        <label>Price (PKR)<input id="sPrice" type="number" value="2500"></label>
+      </div>
+    `, 'Add', async ()=>{
+      const name = val('sName').trim();
+      if(!name){ toast('Name required'); return false; }
+      db.services.push({
+        id:'s'+Date.now(), name,
+        cat: val('sCat').trim()||'General',
+        mins: Number(val('sMins'))||30,
+        price: Number(val('sPrice'))||0
+      });
+      addAudit('Service Added', name);
+      persist(); render(); toast('Service added');
+    });
+  }
+  else if(a==='delService'){
+    const sv = sOf(id);
+    if(!sv) return;
+    modal('Delete Service?', `<p class="mut">Delete <b>${esc(sv.name)}</b>?</p>`, 'Delete', async ()=>{
+      db.services = db.services.filter(s=>s.id!==id);
+      addAudit('Service Deleted', sv.name);
+      persist(); render(); toast('Service deleted');
+    });
+  }
+  else if(a==='addStaff'){
+    modal(T('addStaff'), `
+      <div class="fl">
+        <label>Full Name<input id="stName" placeholder="e.g. Sana Beautician"></label>
+        <label>Phone<input id="stPhone"></label>
+        <label>Email (for login)<input id="stEmail" type="email" placeholder="sana@oursalon.pk"></label>
+        <label>Password<input id="stPw" value="staff123"></label>
+        <label>Skills<input id="stSkills" placeholder="Hair, Makeup, Facial"></label>
+        <label>Commission %<input id="stComm" type="number" value="20"></label>
+      </div>
+    `, 'Add', async ()=>{
+      const name = val('stName').trim();
+      if(!name){ toast('Name required'); return false; }
+      db.staff.push({
+        id:'st'+Date.now(), name,
+        phone: val('stPhone').trim(),
+        email: val('stEmail').trim()||(name.toLowerCase().replace(/\W+/g,'.')+'@oursalon.pk'),
+        pw: val('stPw')||'staff123',
+        skills: val('stSkills').trim(),
+        comm: Number(val('stComm'))||0,
+        photo:''
+      });
+      addAudit('Staff Added', name);
+      persist(); render(); toast('Staff added');
+    });
+  }
+  else if(a==='editStaff'){
+    if(!S.u || !['owner','admin'].includes(S.u.role)){ toast('Only Owner or Admin can edit staff'); return; }
+    const st = stOf(id);
+    if(!st){ toast('Staff not found'); return; }
+    modal(T('editStaff'), `
+      <div class="fl">
+        <label>Full Name<input id="estName" value="${esc(st.name)}" placeholder="Staff name"></label>
+        <label>Phone<input id="estPhone" value="${esc(st.phone||'')}"></label>
+        <label>Email (for login)<input id="estEmail" type="email" value="${esc(st.email||'')}"></label>
+        <label>Password<input id="estPw" type="text" value="${esc(st.pw||'staff123')}"></label>
+        <label>Skills<input id="estSkills" value="${esc(st.skills||'')}"></label>
+        <label>Commission %<input id="estComm" type="number" value="${esc(st.comm??0)}"></label>
+      </div>
+    `, T('save'), async ()=>{
+      const newName = val('estName').trim();
+      if(!newName){ toast('Name required'); return false; }
+      const oldName = st.name;
+      st.name = newName;
+      st.phone = val('estPhone').trim();
+      st.email = val('estEmail').trim().toLowerCase() || st.email;
+      st.pw = val('estPw').trim() || st.pw || 'staff123';
+      st.skills = val('estSkills').trim();
+      st.comm = Number(val('estComm'))||0;
+      if(S.u && S.u.role==='staff' && S.u.ref===st.id){
+        S.u = {...S.u, name:newName, e:st.email};
+        safeSet(SESSION_KEY, JSON.stringify(S.u));
+      }
+      addAudit('Staff Updated', `${oldName} → ${newName}`);
+      persist(); render(); toast('Staff updated');
+    });
+  }
+  else if(a==='delStaff'){
+    const st = stOf(id);
+    if(!st) return;
+    modal('Remove Staff?', `<p class="mut">Remove <b>${esc(st.name)}</b>?</p>`, 'Remove', async ()=>{
+      db.staff = db.staff.filter(s=>s.id!==id);
+      addAudit('Staff Removed', st.name);
+      persist(); render(); toast('Staff removed');
+    });
+  }
+  else if(a==='markPaid'){
+    if(db.bills[id]){
+      db.bills[id].status='Paid';
+      addAudit('Bill Paid', `${db.bills[id].serviceName||'Service'} (${fmtRs(db.bills[id].amount)})`);
+      persist(); render(); toast('Marked Paid');
+    }
+  }
+  else if(a==='saveSettings'){
+    db.orgName = val('setOrg').trim()||DEFAULT_ORG;
+    db.orgTagline = val('setTag').trim();
+    db.aboutTitle = val('setAboutTitle').trim()||DEFAULT_ABOUT_TITLE;
+    db.aboutP1 = val('setAboutP1').trim()||DEFAULT_ABOUT_P1;
+    db.aboutP2 = val('setAboutP2').trim()||DEFAULT_ABOUT_P2;
+    if(S.tempLogo !== undefined) db.orgLogo = S.tempLogo;
+    S.tempLogo = undefined;
+    db.accent = S.tempAccent || db.accent || 'pink';
+    db.admin.name = val('setAName').trim()||'Manager';
+    db.admin.email = val('setAEmail').trim().toLowerCase();
+    db.admin.pw = val('setAPw').trim()||'admin123';
+
+    if(S.u && S.u.role==='owner'){
+      const oNm = val('setOName').trim()||DEFAULT_OWNER_NAME;
+      const oEm = val('setOEmail').trim().toLowerCase()||DEFAULT_OWNER_EMAIL;
+      const oPw = val('setOPw').trim()||DEFAULT_OWNER_PW;
+      const lockChecked = !!($('#setGlobalLock') && $('#setGlobalLock').checked);
+      const lockMsg = val('setGlobalLockMsg').trim() || DEFAULT_LOCK_MSG;
+      const tDays = normalizeTrialDays(val('setTrialDays') || owner.trialDays || DEFAULT_TRIAL_DAYS);
+      owner.ownerName = oNm;
+      owner.ownerEmail = oEm;
+      owner.ownerPw = oPw;
+      owner.globalAppLocked = lockChecked;
+      owner.globalLockMsg = lockMsg;
+      owner.trialDays = tDays;
+      db.globalAppLocked = lockChecked;
+      db.globalLockMsg = lockMsg;
+      S.u = {...S.u, e:oEm, name:oNm};
+      safeSet(SESSION_KEY, JSON.stringify(S.u));
+    } else if(S.u && S.u.role==='admin'){
+      S.u = {...S.u, e:db.admin.email, name:db.admin.name};
+      safeSet(SESSION_KEY, JSON.stringify(S.u));
+    }
+
+    applyAccent();
+    addAudit('Settings Saved', db.orgName);
+    persist(); render(); toast('Settings saved');
+  }
+  else if(a==='backupJson'){
+    const blob = new Blob([JSON.stringify({db, owner}, null, 2)], {type:'application/json'});
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${(db.orgName||'our-salon').toLowerCase().replace(/\W+/g,'-')}-backup-${TODAY}.json`;
+    link.click();
+    setTimeout(()=>URL.revokeObjectURL(url), 1000);
+    toast('Backup exported');
+  }
+  else if(a==='restoreJson'){
+    modal(T('restoreBak'), `<p class="mut sm">Paste a previously exported JSON backup to restore salon data.</p><textarea id="jrestore" placeholder='{"clients":[],"services":[]}'></textarea>`, 'Restore', ()=>{
+      try{
+        const parsed = JSON.parse(val('jrestore'));
+        const srcDb = parsed && parsed.db ? parsed.db : parsed;
+        if(!srcDb || !Array.isArray(srcDb.clients) || !Array.isArray(srcDb.services)) throw 0;
+        db = {...emptyDb(), ...srcDb};
+        if(parsed && parsed.owner) owner = {...emptyOwner(), ...parsed.owner};
+        enforceRemoteLock();
+        applyAccent();
+        addAudit('Backup Restored', db.orgName);
+        persist(); render(); toast('Backup restored');
+      }catch(err){ toast('Invalid JSON backup'); return false; }
+    });
+  }
+  else if(a==='csvBills'){
+    const q = v => '"'+String(v==null?'':v).replace(/"/g,'""')+'"';
+    const rows = [['Date','Client','Service','Amount','Status'].join(',')];
+    Object.values(db.bills||{}).forEach(b=>{
+      const cl = cOf(b.clientId);
+      rows.push([b.date, cl?cl.name:'', b.serviceName||'', b.amount||0, b.status||''].map(q).join(','));
+    });
+    const blob = new Blob([rows.join('\n')], {type:'text/csv;charset=utf-8;'});
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `salon-bills-${TODAY}.csv`;
+    link.click();
+    setTimeout(()=>URL.revokeObjectURL(url), 1000);
+    toast('Bills CSV exported');
+  }
+  else if(a==='print'){ window.print(); }
+  else if(a==='loadDemo'){
+    modal('Load Demo Data', `
+      <p class="mut">Sample clients, services, staff, and today's appointments will be loaded. Existing data may be overwritten.</p>
+    `, 'Load Demo', ()=>{
+      seedDemo(false);
+      return true;
+    });
+  }
+  else if(a==='clearData'){
+    modal('Clear All Data?', `
+      <p class="mut">Clients, services, staff, appointments, and bills will be cleared. Login and owner kill switch settings will remain intact.</p>
+    `, 'Clear Everything', ()=>{
+      const keep = {
+        orgName:db.orgName, orgTagline:db.orgTagline, orgLogo:db.orgLogo,
+        aboutTitle:db.aboutTitle, aboutP1:db.aboutP1, aboutP2:db.aboutP2,
+        accent:db.accent, globalAppLocked:syncKillSwitchFlags(),
+        globalLockMsg:owner.globalLockMsg||db.globalLockMsg||DEFAULT_LOCK_MSG,
+        admin:{...db.admin}
+      };
+      db = {...emptyDb(), ...keep};
+      closeDr();
+      persist(); render(); toast('All data cleared');
+      return true;
+    });
+  }
+});
+
+document.addEventListener('input', e=>{
+  if(e.target.id==='q' || e.target.id==='gq'){
+    S.q = e.target.value;
+    $$('#q, #gq').forEach(inp=>{ if(inp!==e.target && inp.value!==e.target.value) inp.value=e.target.value; });
+    render(false);
+  } else if(['apDate','apTime','apStaff'].includes(e.target.id)){
+    refreshBookingSlotChart('apDate', 'apTime', 'apStaff', 'apSlotBox');
+  } else if(['cbDate','cbTime'].includes(e.target.id)){
+    refreshBookingSlotChart('cbDate', 'cbTime', '', 'cbSlotBox');
+  } else if(['rsDate','rsTime'].includes(e.target.id)){
+    refreshBookingSlotChart('rsDate', 'rsTime', '', 'rsSlotBox');
+  }
+});
+
+document.addEventListener('change', e=>{
+  if(e.target.dataset.f==='d'){ S.d = e.target.value||TODAY; render(false); }
+  else if(e.target.dataset.f==='f'){ S.f = e.target.value; render(false); }
+  else if(['apDate','apTime','apStaff'].includes(e.target.id)){
+    refreshBookingSlotChart('apDate', 'apTime', 'apStaff', 'apSlotBox');
+  } else if(['cbDate','cbTime'].includes(e.target.id)){
+    refreshBookingSlotChart('cbDate', 'cbTime', '', 'cbSlotBox');
+  } else if(['rsDate','rsTime'].includes(e.target.id)){
+    refreshBookingSlotChart('rsDate', 'rsTime', '', 'rsSlotBox');
+  }
+});
+
+document.addEventListener('keydown', e=>{
+  if(e.key==='Escape'){ closeM(); closeDr(); if(S.mobMenuOpen){ S.mobMenuOpen=false; render(false); } }
+});
+
+function seedDemo(silent=false){
+  db.clients = [
+    {id:'c1', name:'Ayesha Khan', phone:'03001112233', email:'ayesha@example.com', gender:'Female', notes:'Prefers soft makeup', photo:''},
+    {id:'c2', name:'Fatima Ali', phone:'03219876543', email:'fatima@example.com', gender:'Female', notes:'Regular facial client', photo:''},
+    {id:'c3', name:'Sana Malik', phone:'03331234567', email:'sana.m@example.com', gender:'Female', notes:'Bridal package interest', photo:''},
+    {id:'c4', name:'Zainab Raza', phone:'03445556677', email:'zainab@example.com', gender:'Female', notes:'Hair coloring regular', photo:''}
+  ];
+  db.services = [
+    {id:'s1', name:'Hair Cut & Style', cat:'Hair', mins:45, price:1500},
+    {id:'s2', name:'Party Makeup', cat:'Makeup', mins:60, price:3500},
+    {id:'s3', name:'Bridal Makeup', cat:'Bridal', mins:120, price:15000},
+    {id:'s4', name:'Facial (Gold)', cat:'Facial', mins:50, price:2800},
+    {id:'s5', name:'Manicure + Pedicure', cat:'Nails', mins:60, price:2200},
+    {id:'s6', name:'Hair Color', cat:'Hair', mins:90, price:4500}
+  ];
+  db.staff = [
+    {id:'st1', name:'Mehwish', phone:'03005556677', email:'mehwish@oursalon.pk', pw:'staff123', skills:'Makeup, Bridal', comm:25, photo:''},
+    {id:'st2', name:'Hira', phone:'03112223344', email:'hira@oursalon.pk', pw:'staff123', skills:'Hair, Facial', comm:20, photo:''},
+    {id:'st3', name:'Saba', phone:'03221112233', email:'saba@oursalon.pk', pw:'staff123', skills:'Nails, Facial', comm:15, photo:''}
+  ];
+  db.appts = {};
+  db.appts[TODAY] = [
+    {id:'a1', clientId:'c1', serviceId:'s2', staffId:'st1', time:'11:00', status:'A', price:3500},
+    {id:'a2', clientId:'c2', serviceId:'s4', staffId:'st2', time:'13:00', status:'B', price:2800},
+    {id:'a3', clientId:'c3', serviceId:'s1', staffId:'st2', time:'15:00', status:'B', price:1500},
+    {id:'a4', clientId:'c4', serviceId:'s6', staffId:'st2', time:'17:00', status:'B', price:4500}
+  ];
+  db.bills = {};
+  addAudit('Demo Loaded', 'Seeded sample clients, services, staff & appointments');
+  safeSet(STORE_KEY, JSON.stringify(db));
+  safeSet(OWNER_STORE_KEY, JSON.stringify(owner));
+  render();
+  if(!silent) toast('Demo data loaded successfully!');
+}
+
+setInterval(()=>{
+  const changed = sweepExpiredTrials(true);
+  if(changed){
+    enforceRemoteLock();
+    render(false);
+  }
+}, 15000);
+
+if(!hasAnySeededContent() && (db.orgName === DEFAULT_ORG)){
+  seedDemo(true);
+}
+enforceRemoteLock();
+render();
+setTimeout(()=>loadCloud(), 400);
+</script>
+</body>
+</html>
